@@ -2,7 +2,6 @@ import React from 'react';
 import { Text, View, TouchableOpacity } from 'react-native';
 import { connect } from 'react-redux';
 import { removeUser } from '../actions';
-import { CardSection } from './common';
 import { ListItem } from 'react-native-elements';
 import { Ionicons } from '@expo/vector-icons';
 

@@ -1,7 +1,6 @@
 import React from 'react';
 import { Text, View, TouchableWithoutFeedback } from 'react-native';
 import { connect } from 'react-redux';
-import { CardSection } from './common';
 import { setCurrentRoom } from '../actions';
 import { Actions } from 'react-native-router-flux';
 

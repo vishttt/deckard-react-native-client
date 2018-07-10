@@ -1,6 +1,5 @@
 import React from 'react';
 import { ImageBackground } from 'react-native';
-import { Card, CardSection, Button } from '../common';
 import { connect } from 'react-redux';
 import VoteOnUser from './VoteOnUser';
 import { List, Text } from 'react-native-elements';

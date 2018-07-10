@@ -1,6 +1,5 @@
 import React from "react";
 import { onChangeMessage, clearInputBox, receivedMessage } from '../../actions';
-import Message from './Message';
 import CountdownCircle from 'react-native-countdown-circle';
 import { Actions } from 'react-native-router-flux';
 import { View, Text, ImageBackground, FlatList, KeyboardAvoidingView } from 'react-native';

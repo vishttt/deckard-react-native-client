@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Text, FlatList, ImageBackground, KeyboardAvoidingView } from 'react-native';
 import { connect } from 'react-redux';
-import { Actions } from 'react-native-router-flux';
+import { Actions, Modal } from 'react-native-router-flux';
 import { 
     createRoom, 
     searchedUsernameTextChange, 
@@ -10,8 +10,9 @@ import {
     connectSocket,
     setSocketRoom
 } from '../actions';
-import { FormLabel, FormInput, FormValidationMessage, Button, List, ListItem, SearchBar, Card } from 'react-native-elements';
+import { FormInput, FormValidationMessage, Button, Header, Card } from 'react-native-elements';
 import AddedUser from './AddedUser';
+import LeftMenu from './LeftMenu';
 import axios from 'axios';
 import IP from '../IP';
 
@@ -69,6 +70,42 @@ class MainView extends React.Component {
     ifInvited() {
         if (this.state.invited) {
             return (
+                // <View style={{ marginTop: 22 }}>
+                //     <Modal
+                //         animationType='slide'
+                //         transparent={false}
+                //         visible={this.state.invited}
+                //     >
+                //         <Text>`INVITED TO ROOM ${this.state.invitedToRoomName} by ${this.state.roomCreator}!`</Text>
+                //         <Button 
+                //             title='Accept'
+                //             onPress={() => {
+                //                 this.socket.emit('join', {roomID: this.state.invitedToRoomID, addedUsers: this.state.addedUsers});
+                //                 this.socket.emit('accept or decline', {reply: 'accept', user: this.props.user.email.toUpperCase()});
+                //                 this.setState({
+                //                     waiting: true
+                //                 });
+                //             }}
+                //         />
+                //         <Button
+                //             title='Decline'
+                //             onPress={() => {
+                //                 this.socket.emit('accept or decline', {reply: 'decline', user: this.props.user.email.toUpperCase()});
+                //                 this.setState({
+                //                     invited: false,
+                //                     addedUsers: null,
+                //                     invitedToRoomID: null,
+                //                     invitedToRoomName: null,
+                //                     roomCreator: null,
+                //                 });
+                //             }}
+                //         />
+                //     </Modal>
+                // </View>
+
+
+
+
                 <Card
                     title={`INVITED TO ROOM ${this.state.invitedToRoomName} by ${this.state.roomCreator}!`}
                 >
@@ -108,8 +145,12 @@ class MainView extends React.Component {
             style={{ flex: 1 }}
             >
                 <Card
-                    title='Waiting for other bots to join...'
-                />
+                    containerStyle={{ marginTop: '25%', backgroundColor: '#fff', opacity: 0 }}
+                    // titleStyle={{ color: '#b7bfcc' }}
+                    // title='Waiting for other bots to join...'
+                >
+                    <Text style={{ color: '#b7bfcc' }}> Waiting for other bots to join... </Text>
+                </Card>
             </ImageBackground>
             )
         } else {
@@ -118,7 +159,15 @@ class MainView extends React.Component {
                 source={require('../assets/splash.png')}
                 style={{ flex: 1 }}
                 >
-                    <KeyboardAvoidingView style={{ marginTop: '30%' }}>
+
+                    <Header
+                        backgroundColor='rgba(0,0,0,0)'
+                        outerContainerStyles={{borderBottomWidth: 0}}
+                        centerComponent={{ text: 'DECKARD.IO', style: { color: '#b7bfcc', fontSize: 18, fontWeight: 'bold' } }}
+                        leftComponent={<LeftMenu/>}
+                    />
+
+                    <KeyboardAvoidingView style={{ marginTop: '8%' }}>
     
                         {this.ifInvited()}
     

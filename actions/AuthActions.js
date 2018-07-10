@@ -81,7 +81,7 @@ const loginUserSuccess = (dispatch, user) => {
         payload: user.user
     });
 
-    Actions.main();
+    Actions.home();
 }
 
 const loginUserFail = (dispatch) => {

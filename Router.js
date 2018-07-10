@@ -1,6 +1,7 @@
 import React from 'react';
 import { Scene, Router, Actions } from 'react-native-router-flux';
 import LoginForm from './components/LoginForm';
+import HomePage from './components/HomePage';
 import MainView from './components/MainView';
 import WaitingRoom from './components/room/WaitingRoom';
 import ChatRoom from './components/room/ChatRoom';
@@ -21,6 +22,10 @@ class RouterComponent extends React.Component {
         Actions.main();
     }
 
+    onHomeButtonPress() {
+        Actions.home();
+    }
+
     render() {
         return (
             <Router>
@@ -33,17 +38,27 @@ class RouterComponent extends React.Component {
                             initial 
                         />
                     </Scene>
+
+                    <Scene key="homepage">
+                        <Scene
+                            key="home"
+                            component={HomePage}
+                            hideNavBar
+                            initial
+                        />
+                    </Scene>
                     
                     <Scene key="main">
                         <Scene
-                            leftTitle="Log Out"
-                            onLeft={this.onLogoutButtonPress.bind(this)}
+                            // leftTitle="Home"
+                            // onLeft={this.onHomeButtonPress.bind(this)}
                             key="mainView"
                             component={MainView}
-                            title="DECKARD.IO"
-                            titleStyle={{ color: '#b7bfcc' }}
-                            leftButtonTextStyle={{ color: '#b7bfcc' }}
-                            navTransparent
+                            // title="DECKARD.IO"
+                            // titleStyle={{ color: '#b7bfcc' }}
+                            // leftButtonTextStyle={{ color: '#b7bfcc' }}
+                            // navTransparent
+                            hideNavBar
                             initial
                         />
                     </Scene>

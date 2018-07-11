@@ -55,7 +55,7 @@ class VoteOnUser extends React.Component {
                     />
 
                     <Button
-                        title='HYUMON'
+                        title='HUMAN'
                         raised
                         backgroundColor={this.state.HUMAN ? "rgba(255, 255, 255, 0.5)" : "rgba(0, 0, 0, 0.5)"}                    
                         onPress={this.voteHuman.bind(this)}                

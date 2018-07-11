@@ -8,10 +8,9 @@ class HomePage extends React.Component {
     constructor() {
         super();
         this.state = {
-            showRules: false
+            showRules: false,
         }
     }
-
 
     onRulesPress() {
         this.setState({
@@ -27,8 +26,8 @@ class HomePage extends React.Component {
         } else {
             return (
                 <Card
-                containerStyle={{ backgroundColor: 'rgba(0,0,0,0.5)' }}
-                title='Welcome Hyumon'
+                containerStyle={{ backgroundColor: 'rgba(0,0,0,0.5)', marginTop: '23%' }}
+                title='Welcome Human'
                 titleStyle={{ color: '#b7bfcc' }}
                 >
                     <TouchableOpacity onPress={this.onRulesPress.bind(this)}>
@@ -37,9 +36,15 @@ class HomePage extends React.Component {
                         </Card>
                     </TouchableOpacity>
 
-                    <TouchableOpacity>
+                    <TouchableOpacity onPress={Actions.profile}>
                         <Card containerStyle={{ backgroundColor: 'rgba(0,0,0,0.5)' }}>
                             <Text style={{ color: '#b7bfcc', textAlign: 'center', fontSize: 20 }}>Profile</Text>
+                        </Card>
+                    </TouchableOpacity>
+
+                    <TouchableOpacity onPress={Actions.friends}>
+                        <Card containerStyle={{ backgroundColor: 'rgba(0,0,0,0.5)' }}>
+                            <Text style={{ color: '#b7bfcc', textAlign: 'center', fontSize: 20 }}>Friends</Text>
                         </Card>
                     </TouchableOpacity>
 
@@ -74,7 +79,7 @@ class HomePage extends React.Component {
                         <Text style={{ color: '#b7bfcc' }}>
                             Put rules here...
                             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed blandit, nulla ac vulputate aliquam, magna urna ultricies nulla, vel scelerisque nulla sem eget felis. Donec a mauris tellus. Donec sem lectus, condimentum eu justo sed, viverra varius lectus. Maecenas mi lacus, maximus in leo vel, lacinia cursus massa. Sed a vulputate sapien, quis varius nisi. Ut mattis nec libero quis euismod. Praesent eget hendrerit libero, nec sollicitudin quam. In hac habitasse platea dictumst. Phasellus vulputate consequat sem a dictum. Fusce elementum neque sed mauris molestie, et tincidunt purus gravida. Fusce congue neque ut finibus commodo. Duis vitae nisi at tortor eleifend facilisis vitae at velit. Nulla sit amet erat pretium, eleifend nisi a, tincidunt quam. Mauris a augue aliquet massa volutpat rhoncus. Aenean in varius magna.
-                            Pellentesque a sem erat. In venenatis accumsan mauris nec maximus. Phasellus bibendum tortor sapien, pellentesque consectetur magna hendrerit sed. Vestibulum dapibus ex vel lectus interdum mollis. Praesent vitae metus suscipit, efficitur mauris vitae, sodales nisl. Etiam gravida ac mi sed gravida. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Cras consectetur tellus diam, non dictum magna feugiat molestie. Mauris faucibus, arcu eget venenatis ullamcorper, libero ligula lobortis ante, vitae rhoncus urna libero non nisl. Cras erat justo, consequat a consectetur in, ultrices in sem. Aliquam erat volutpat. Ut sed aliquam magna, eget porta odio.
+                            Pellentesque a sem erat. In venenatis accumsan mauris nec maximus. Phasellus bibendum tortor sapien, pellentesque consectetur magna hendrerit sed. Vestibulum dapibus ex vel lectus interdum mollis. Praesent vitae metus suscipit, efficitur mauris vitae, sodales nisl. Etiam gravida ac mi sed gravida.
                         </Text>
                     </Card>
                     </TouchableOpacity>

@@ -2,6 +2,8 @@ import React from 'react';
 import { Scene, Router, Actions } from 'react-native-router-flux';
 import LoginForm from './components/LoginForm';
 import HomePage from './components/HomePage';
+import Profile from './components/Profile';
+import Friends from './components/Friends'
 import MainView from './components/MainView';
 import WaitingRoom from './components/room/WaitingRoom';
 import ChatRoom from './components/room/ChatRoom';
@@ -43,6 +45,24 @@ class RouterComponent extends React.Component {
                         <Scene
                             key="home"
                             component={HomePage}
+                            hideNavBar
+                            initial
+                        />
+                    </Scene>
+
+                    <Scene key="profilepage">
+                        <Scene
+                            key="profile"
+                            component={Profile}
+                            hideNavBar
+                            initial
+                        />
+                    </Scene>
+
+                    <Scene key="friendspage">
+                        <Scene
+                            key="friends"
+                            component={Friends}
                             hideNavBar
                             initial
                         />

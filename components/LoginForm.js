@@ -44,12 +44,10 @@ class LoginForm extends React.Component {
             style={{ flex: 1 }}
             >
                 <KeyboardAvoidingView style={{ top: '23%' }}>
-                {/* <View style={{ top: '23%' }}> */}
                     <View style={{ alignItems: 'center' }}>
                         <FormLabel labelStyle={{ fontSize: 25 }}>DECKARD.IO</FormLabel>
                     </View>
 
-                    {/* <FormLabel>Email</FormLabel> */}
                     <FormInput
                         placeholder="email"
                         placeholderTextColor='#b7bfcc'
@@ -57,7 +55,6 @@ class LoginForm extends React.Component {
                         value={this.props.email}
                     />
 
-                    {/* <FormLabel>Password</FormLabel> */}
                     <FormInput
                         secureTextEntry
                         placeholder="password"
@@ -85,7 +82,6 @@ class LoginForm extends React.Component {
                         onPress={this.onSignUpButtonPress.bind(this)}
                         backgroundColor="rgba(0, 0, 0, 0.5)"
                     />
-                {/* </View> */}
                 </KeyboardAvoidingView>
             </ImageBackground>
         );

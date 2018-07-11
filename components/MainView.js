@@ -47,7 +47,7 @@ class MainView extends React.Component {
         this.socket.on('invite', data => {
             // console.log('invite data: ', data);
             // console.log('this.props.user email', this.props.user.email);
-            if (data.addedUsers.includes(this.props.user.email.toUpperCase()) && this.props.user.email !== data.roomCreator) {
+            if (data.addedUsers.includes(this.props.user.email.toLowerCase()) && this.props.user.email !== data.roomCreator) {
                 this.setState({ 
                     invited: true,
                     invitedToRoomID: data.roomID,
@@ -70,42 +70,6 @@ class MainView extends React.Component {
     ifInvited() {
         if (this.state.invited) {
             return (
-                // <View style={{ marginTop: 22 }}>
-                //     <Modal
-                //         animationType='slide'
-                //         transparent={false}
-                //         visible={this.state.invited}
-                //     >
-                //         <Text>`INVITED TO ROOM ${this.state.invitedToRoomName} by ${this.state.roomCreator}!`</Text>
-                //         <Button 
-                //             title='Accept'
-                //             onPress={() => {
-                //                 this.socket.emit('join', {roomID: this.state.invitedToRoomID, addedUsers: this.state.addedUsers});
-                //                 this.socket.emit('accept or decline', {reply: 'accept', user: this.props.user.email.toUpperCase()});
-                //                 this.setState({
-                //                     waiting: true
-                //                 });
-                //             }}
-                //         />
-                //         <Button
-                //             title='Decline'
-                //             onPress={() => {
-                //                 this.socket.emit('accept or decline', {reply: 'decline', user: this.props.user.email.toUpperCase()});
-                //                 this.setState({
-                //                     invited: false,
-                //                     addedUsers: null,
-                //                     invitedToRoomID: null,
-                //                     invitedToRoomName: null,
-                //                     roomCreator: null,
-                //                 });
-                //             }}
-                //         />
-                //     </Modal>
-                // </View>
-
-
-
-
                 <Card
                     title={`INVITED TO ROOM ${this.state.invitedToRoomName} by ${this.state.roomCreator}!`}
                 >
@@ -113,7 +77,7 @@ class MainView extends React.Component {
                     title='Accept'
                     onPress={() => {
                         this.socket.emit('join', {roomID: this.state.invitedToRoomID, addedUsers: this.state.addedUsers});
-                        this.socket.emit('accept or decline', {reply: 'accept', user: this.props.user.email.toUpperCase()});
+                        this.socket.emit('accept or decline', {reply: 'accept', user: this.props.user.email.toLowerCase()});
                         this.setState({
                             waiting: true
                         });
@@ -122,7 +86,7 @@ class MainView extends React.Component {
                 <Button
                     title='Decline'
                     onPress={() => {
-                        this.socket.emit('accept or decline', {reply: 'decline', user: this.props.user.email.toUpperCase()});
+                        this.socket.emit('accept or decline', {reply: 'decline', user: this.props.user.email.toLowerCase()});
                         this.setState({
                             invited: false,
                             addedUsers: null,
@@ -142,12 +106,10 @@ class MainView extends React.Component {
             return (
             <ImageBackground 
             source={require('../assets/splash.png')}
-            style={{ flex: 1 }}
+            style={{ flex: 1, backgroundColor: '#000' }}
             >
                 <Card
                     containerStyle={{ marginTop: '25%', backgroundColor: '#fff', opacity: 0 }}
-                    // titleStyle={{ color: '#b7bfcc' }}
-                    // title='Waiting for other bots to join...'
                 >
                     <Text style={{ color: '#b7bfcc' }}> Waiting for other bots to join... </Text>
                 </Card>
@@ -157,7 +119,7 @@ class MainView extends React.Component {
             return (
                 <ImageBackground 
                 source={require('../assets/splash.png')}
-                style={{ flex: 1 }}
+                style={{ flex: 1, backgroundColor: '#000' }}
                 >
 
                     <Header

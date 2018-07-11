@@ -1,9 +1,9 @@
 import React from 'react';
 import { Actions } from 'react-native-router-flux';
 import { Ionicons } from '@expo/vector-icons';
-import { TouchableOpacity } from 'react-native';
+import { TouchableOpacity, Text } from 'react-native';
 
-class RightLogOut extends React.Component {
+class LogOut extends React.Component {
     onLogoutPress() {
         Actions.auth();
     }
@@ -11,10 +11,10 @@ class RightLogOut extends React.Component {
     render() {
         return (
             <TouchableOpacity onPress={this.onLogoutPress}>
-                <Ionicons name='ios-log-out' color='#b7bfcc' size={23} />
+                <Text style={{ color: '#b7bfcc', textAlign: 'center', fontSize: 15 }}>Log Out</Text>
             </TouchableOpacity>
         )
     }
 }
 
-export default RightLogOut;
+export default LogOut;

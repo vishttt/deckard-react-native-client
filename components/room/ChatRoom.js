@@ -93,7 +93,7 @@ class ChatRoom extends React.Component {
     return (
         <ImageBackground 
             source={require('../../assets/splash.png')}
-            style={{ flex: 1 }}
+            style={{ flex: 1, backgroundColor: '#000' }}
         >
             <KeyboardAvoidingView style={{ marginTop: '20%' }}>
                 <CountdownCircle

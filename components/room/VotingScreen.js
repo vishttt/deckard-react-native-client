@@ -17,7 +17,7 @@ class VotingScreen extends React.Component {
         return (
             <ImageBackground 
             source={require('../../assets/splash.png')}
-            style={{ width: '100%', height: '100%', flex: 1 }}
+            style={{ flex: 1, backgroundColor: '#000' }}
             >
                 <List
                     containerStyle={{ backgroundColor: 'rgba(0, 0, 0, 0.85)', marginTop: '25%' }}
@@ -25,7 +25,7 @@ class VotingScreen extends React.Component {
                     {this.props.addedUsers.map(user => {
                         console.log(user);
                         console.log(this.props.user);
-                        if (user !== this.props.user.email.toUpperCase()) {
+                        if (user !== this.props.user.email.toLowerCase()) {
                             return (
                                 <VoteOnUser user={user} key={Math.random()*Math.random()}/>
                             )

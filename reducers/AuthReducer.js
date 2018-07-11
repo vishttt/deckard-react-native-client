@@ -82,8 +82,8 @@ export default (state = INITIAL_STATE, action) => {
         case SIGNUP_USER:
             return { ...state, signupLoading: true, error: '' };
         case LOGIN_USER_SUCCESS:
-            SECOND_STATE = { ...state, ...INITIAL_STATE, user: action.payload, uid: action.payload.uid, addedUsers: [state.email.toUpperCase()], loggedIn: true };
-            return { ...state, ...INITIAL_STATE, user: action.payload, uid: action.payload.uid, addedUsers: [state.email.toUpperCase()], loggedIn: true };
+            SECOND_STATE = { ...state, ...INITIAL_STATE, user: action.payload, uid: action.payload.uid, addedUsers: [state.email.toLowerCase()], loggedIn: true };
+            return { ...state, ...INITIAL_STATE, user: action.payload, uid: action.payload.uid, addedUsers: [state.email.toLowerCase()], loggedIn: true };
         case LOGIN_USER_FAIL:
             return { ...state, error: 'Authentication Failed.', loading: false, signupLoading: false };
         case LOGOUT_USER:
@@ -108,7 +108,7 @@ export default (state = INITIAL_STATE, action) => {
                     ...state, 
                     totalUsersInRoom: state.totalUsersInRoom + 1, 
                     removeSelf: false,
-                    addedUsers: [ ...state.addedUsers, action.payload.toUpperCase() ]
+                    addedUsers: [ ...state.addedUsers, action.payload.toLowerCase() ]
                 };
             }
         case REMOVE_USER:

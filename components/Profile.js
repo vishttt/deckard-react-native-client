@@ -10,7 +10,7 @@ class Profile extends React.Component {
         return(
             <ImageBackground 
             source={require('../assets/splash.png')}
-            style={{ flex: 1 }}
+            style={{ flex: 1, backgroundColor: '#000' }}
             >
                 <Header
                     backgroundColor='rgba(0,0,0,0)'

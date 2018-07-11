@@ -16,7 +16,7 @@ class WaitingRoom extends React.Component {
         return (
             <ImageBackground 
                 source={require('../../assets/splash.png')}
-                style={{ flex: 1 }}
+                style={{ flex: 1, backgroundColor: '#000' }}
             >
                 <View style={{ marginTop: '28%' }}>
                     <Text

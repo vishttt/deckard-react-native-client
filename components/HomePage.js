@@ -2,7 +2,7 @@ import React from 'react';
 import { Actions } from 'react-native-router-flux';
 import { View, ImageBackground, KeyBoardAvoidingView, TouchableOpacity, Modal } from 'react-native';
 import { Card, Header, Text, Overlay } from 'react-native-elements'
-import RightLogOut from './RightLogOut';
+import LogOut from './LogOut';
 
 class HomePage extends React.Component {
     constructor() {
@@ -62,7 +62,7 @@ class HomePage extends React.Component {
         return (
             <ImageBackground 
             source={require('../assets/splash.png')}
-            style={{ flex: 1 }}
+            style={{ flex: 1, backgroundColor: '#000' }}
             >
 
                 <Modal
@@ -88,8 +88,8 @@ class HomePage extends React.Component {
                 <Header
                     backgroundColor='rgba(0,0,0,0)'
                     outerContainerStyles={{borderBottomWidth: 0}}
-                    centerComponent={{ text: 'DECKARD.IO', style: { color: '#b7bfcc', fontSize: 18, fontWeight: 'bold' } }}
-                    leftComponent={<RightLogOut/>}
+                    centerComponent={{ text: 'DECKARD.IO', style: { color: '#b7bfcc', fontSize: 18, fontWeight: 'bold', marginLeft: -9 } }}
+                    leftComponent={<LogOut/>}
                 />
 
                 {this.toggleView()}

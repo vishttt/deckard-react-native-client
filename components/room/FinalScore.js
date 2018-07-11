@@ -8,7 +8,7 @@ class FinalScore extends React.Component {
         return (
             <ImageBackground 
             source={require('../../assets/splash.png')}
-            style={{ width: '100%', height: '100%', flex: 1 }}
+            style={{ flex: 1, backgroundColor: '#000' }}
             >
             <Text
                 style={{ color: '#b7bfcc', marginTop: '32%', marginLeft: '25%' }}

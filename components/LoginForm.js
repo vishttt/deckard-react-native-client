@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Text, ImageBackground, KeyboardAvoidingView } from 'react-native';
 import { connect } from 'react-redux';
-import { emailChanged, passwordChanged, loginUser, signupUser } from '../actions';
+import { emailChanged, passwordChanged, loginUser, signupUser, githubLogin } from '../actions';
 import { FormLabel, FormInput, FormValidationMessage, Button, Divider, SocialIcon } from 'react-native-elements';
 import { Ionicons } from '@expo/vector-icons';
 
@@ -148,24 +148,32 @@ class LoginForm extends React.Component {
                             raised
                             onPress={this.onButtonPress.bind(this)}
                             backgroundColor="rgba(0, 0, 0, 0.5)"
+                            borderRadius={35}
+                            containerViewStyle={{ borderRadius: 35 }}
                         />
 
                         <SocialIcon
                             button
+                            raised
                             type='google-plus-official'
                             title='Sign in with Google'
+                            // onPress={}
                         />
 
                         <SocialIcon
                             button
+                            raised
                             type='facebook'
                             title='Sign in with Facebook'
+                            // onPress={}
                         />
 
                         <SocialIcon
                             button
+                            raised
                             type='github-alt'
                             title='Sign in with Github'
+                            onPress={this.props.githubLogin.bind(this)}
                         />
                     </KeyboardAvoidingView>
                 </ImageBackground>
@@ -245,5 +253,5 @@ const mapStateToProps = ({ auth }) => {
 };
 
 export default connect(mapStateToProps, { 
-    emailChanged, passwordChanged, loginUser, signupUser
+    emailChanged, passwordChanged, loginUser, signupUser, githubLogin,
 })(LoginForm);

@@ -10,7 +10,7 @@ import {
     connectSocket,
     setSocketRoom
 } from '../actions';
-import { FormInput, FormValidationMessage, Button, Header, Card } from 'react-native-elements';
+import { FormInput, FormValidationMessage, Button, Header, Card, Divider } from 'react-native-elements';
 import AddedUser from './AddedUser';
 import LeftMenu from './LeftMenu';
 import axios from 'axios';
@@ -71,10 +71,17 @@ class MainView extends React.Component {
         if (this.state.invited) {
             return (
                 <Card
-                    title={`INVITED TO ROOM ${this.state.invitedToRoomName} by ${this.state.roomCreator}!`}
+                containerStyle={{ backgroundColor: 'rgba(0,0,0,0.5)', marginTop: 90 }}
+                title={`INVITED TO ROOM ${this.state.invitedToRoomName} by ${this.state.roomCreator}!`}
+                titleStyle={{ color: '#b7bfcc' }}
                 >
                 <Button 
                     title='Accept'
+                    titleStyle={{ color: '#b7bfcc' }}
+                    containerStyle={{ marginTop: 90 }}
+                    backgroundColor='#000000'
+                    outline
+                    rounded
                     onPress={() => {
                         this.socket.emit('join', {roomID: this.state.invitedToRoomID, addedUsers: this.state.addedUsers});
                         this.socket.emit('accept or decline', {reply: 'accept', user: this.props.user.email.toLowerCase()});
@@ -83,8 +90,16 @@ class MainView extends React.Component {
                         });
                     }}
                 />
+
+                <Divider style={{ backgroundColor: 'rgba(0, 0, 0, 0)', height: 5 }}/>
+
                 <Button
                     title='Decline'
+                    titleStyle={{ color: '#b7bfcc' }}
+                    containerStyle={{ marginTop: 90, opacity: 0.5}}
+                    backgroundColor='#000000'
+                    outline
+                    rounded
                     onPress={() => {
                         this.socket.emit('accept or decline', {reply: 'decline', user: this.props.user.email.toLowerCase()});
                         this.setState({
@@ -96,7 +111,7 @@ class MainView extends React.Component {
                         });
                     }}
                 />
-                </Card>
+            </Card>
             )
         }
     }
@@ -109,9 +124,11 @@ class MainView extends React.Component {
             style={{ flex: 1, backgroundColor: '#000' }}
             >
                 <Card
-                    containerStyle={{ marginTop: '25%', backgroundColor: '#fff', opacity: 0 }}
+                    containerStyle={{ backgroundColor: 'rgba(0,0,0,0.5)', marginTop: 90 }}
+                    title={'Waiting for other bots to join...'}
+                    titleStyle={{ color: '#b7bfcc' }}
                 >
-                    <Text style={{ color: '#b7bfcc' }}> Waiting for other bots to join... </Text>
+
                 </Card>
             </ImageBackground>
             )
@@ -121,6 +138,46 @@ class MainView extends React.Component {
                 source={require('../assets/splash.png')}
                 style={{ flex: 1, backgroundColor: '#000' }}
                 >
+
+                    {/* <Modal
+                        animationType='slide'
+                        transparent={true}
+                        visible={this.state.invited}
+                    >
+                        <Card
+                            containerStyle={{ backgroundColor: 'rgba(0,0,0,0.5)', marginTop: 90 }}
+                            title={`INVITED TO ROOM ${this.state.invitedToRoomName} by ${this.state.roomCreator}!`}
+                            titleStyle={{ color: '#b7bfcc' }}
+                        >
+                        <Button 
+                            title='Accept'
+                            titleStyle={{ color: '#b7bfcc' }}
+                            containerStyle={{ backgroundColor: 'rgba(0,0,0,0.5)', marginTop: 90 }}
+                            onPress={() => {
+                                this.socket.emit('join', {roomID: this.state.invitedToRoomID, addedUsers: this.state.addedUsers});
+                                this.socket.emit('accept or decline', {reply: 'accept', user: this.props.user.email.toLowerCase()});
+                                this.setState({
+                                    waiting: true
+                                });
+                            }}
+                        />
+                        <Button
+                            title='Decline'
+                            titleStyle={{ color: '#b7bfcc' }}
+                            containerStyle={{ backgroundColor: 'rgba(0,0,0,0.5)', marginTop: 90 }}
+                            onPress={() => {
+                                this.socket.emit('accept or decline', {reply: 'decline', user: this.props.user.email.toLowerCase()});
+                                this.setState({
+                                    invited: false,
+                                    addedUsers: null,
+                                    invitedToRoomID: null,
+                                    invitedToRoomName: null,
+                                    roomCreator: null,
+                                });
+                            }}
+                        />
+                        </Card>
+                    </Modal> */}
 
                     <Header
                         backgroundColor='rgba(0,0,0,0)'

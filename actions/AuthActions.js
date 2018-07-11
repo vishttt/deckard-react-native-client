@@ -68,7 +68,6 @@ export const githubLogin = () => {
                 loginUserFail(dispatch);
             });
     }
-
 }
 
 export const loginUser = ({ email, password }) => {

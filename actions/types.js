@@ -28,3 +28,5 @@ export const GUESS_AI = 'guess_ai';
 export const GUESS_HUMAN = 'guess_human';
 
 export const NEW_GAME = 'new_game';
+
+export const SET_TIMER = 'set_timer';

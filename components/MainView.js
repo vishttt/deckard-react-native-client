@@ -8,9 +8,10 @@ import {
     addUser,
     removeUser,
     connectSocket,
-    setSocketRoom
+    setSocketRoom,
+    setTimer
 } from '../actions';
-import { FormInput, FormValidationMessage, Button, Header, Card, Divider } from 'react-native-elements';
+import { FormInput, FormValidationMessage, Button, Header, Card, Divider, Slider } from 'react-native-elements';
 import AddedUser from './AddedUser';
 import LeftMenu from './LeftMenu';
 import axios from 'axios';
@@ -48,6 +49,7 @@ class MainView extends React.Component {
             // console.log('invite data: ', data);
             // console.log('this.props.user email', this.props.user.email);
             if (data.addedUsers.includes(this.props.user.email.toLowerCase()) && this.props.user.email !== data.roomCreator) {
+                this.props.setTimer(data.timer);
                 this.setState({ 
                     invited: true,
                     invitedToRoomID: data.roomID,
@@ -56,7 +58,6 @@ class MainView extends React.Component {
                     roomCreator: data.roomCreator,
                 });
             }
-            // this.socket.emit('join', data.room);
         });
 
         this.socket.on('all users ready', () => {
@@ -139,46 +140,6 @@ class MainView extends React.Component {
                 style={{ flex: 1, backgroundColor: '#000' }}
                 >
 
-                    {/* <Modal
-                        animationType='slide'
-                        transparent={true}
-                        visible={this.state.invited}
-                    >
-                        <Card
-                            containerStyle={{ backgroundColor: 'rgba(0,0,0,0.5)', marginTop: 90 }}
-                            title={`INVITED TO ROOM ${this.state.invitedToRoomName} by ${this.state.roomCreator}!`}
-                            titleStyle={{ color: '#b7bfcc' }}
-                        >
-                        <Button 
-                            title='Accept'
-                            titleStyle={{ color: '#b7bfcc' }}
-                            containerStyle={{ backgroundColor: 'rgba(0,0,0,0.5)', marginTop: 90 }}
-                            onPress={() => {
-                                this.socket.emit('join', {roomID: this.state.invitedToRoomID, addedUsers: this.state.addedUsers});
-                                this.socket.emit('accept or decline', {reply: 'accept', user: this.props.user.email.toLowerCase()});
-                                this.setState({
-                                    waiting: true
-                                });
-                            }}
-                        />
-                        <Button
-                            title='Decline'
-                            titleStyle={{ color: '#b7bfcc' }}
-                            containerStyle={{ backgroundColor: 'rgba(0,0,0,0.5)', marginTop: 90 }}
-                            onPress={() => {
-                                this.socket.emit('accept or decline', {reply: 'decline', user: this.props.user.email.toLowerCase()});
-                                this.setState({
-                                    invited: false,
-                                    addedUsers: null,
-                                    invitedToRoomID: null,
-                                    invitedToRoomName: null,
-                                    roomCreator: null,
-                                });
-                            }}
-                        />
-                        </Card>
-                    </Modal> */}
-
                     <Header
                         backgroundColor='rgba(0,0,0,0)'
                         outerContainerStyles={{borderBottomWidth: 0}}
@@ -189,6 +150,26 @@ class MainView extends React.Component {
                     <KeyboardAvoidingView style={{ marginTop: '8%' }}>
     
                         {this.ifInvited()}
+
+                        <Divider style={{ backgroundColor: 'rgba(0, 0, 0, 0)', height: 15 }}/>
+
+                        <View style={{flex: 1, alignItems: 'stretch', justifyContent: 'center'}}>
+                            <Slider
+                                value={this.props.timer}
+                                maximumValue={60}
+                                step={1}
+                                onValueChange={this.setTime.bind(this)}
+                            />
+                        </View>
+
+                        <Divider style={{ backgroundColor: 'rgba(0, 0, 0, 0)', height: 15 }}/>
+
+                        <Text
+                        style={{ color: '#b7bfcc' }}
+                        >Game Timer: {this.props.timer}</Text>
+
+                        <Divider style={{ backgroundColor: 'rgba(0, 0, 0, 0)', height: 5 }}/>
+
     
                         <FormInput
                             placeholder="Room Name"
@@ -251,6 +232,10 @@ class MainView extends React.Component {
         this.input.clearText();
     }
 
+    setTime(time) {
+        this.props.setTimer(time);
+    }
+
     renderError() {
         if (this.props.maxCapacity) {
             return (
@@ -275,7 +260,8 @@ class MainView extends React.Component {
         this.socket.emit('create new room', { 
             roomName: this.props.roomName, 
             addedUsers: this.props.addedUsers,
-            roomCreator: this.props.user.email
+            roomCreator: this.props.user.email,
+            timer: this.props.timer,
         });
         this.setState({
             waiting: true
@@ -298,6 +284,7 @@ const mapStateToProps = ({ auth }) => {
         email,
         rooms,
         socketRoom,
+        timer,
 
         user,
         roomName, 
@@ -315,6 +302,7 @@ const mapStateToProps = ({ auth }) => {
         email,
         rooms,
         socketRoom,
+        timer,
 
         user,
         roomName, 
@@ -333,5 +321,6 @@ export default connect(mapStateToProps, {
     addUser,
     removeUser,
     connectSocket,
-    setSocketRoom
+    setSocketRoom,
+    setTimer
 })(MainView);

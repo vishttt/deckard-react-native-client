@@ -14,6 +14,7 @@ import {
     REMOVE_USER,
     CONNECT_SOCKET,
     SET_SOCKET_ROOM,
+    SET_TIMER,
     // CHAT TYPES -------------
     CHANGE_MESSAGE,
     CLEAR_INPUT_BOX,
@@ -58,6 +59,8 @@ const INITIAL_STATE = {
     
     message: '',
     messages: [],
+
+    timer: 0,
 
     //
     // ─── VOTE STATE ─────────────────────────────────────────────────────────────────
@@ -141,6 +144,11 @@ export default (state = INITIAL_STATE, action) => {
             return {
                 ...state,
                 socketRoom: action.payload
+            }
+        case SET_TIMER:
+            return {
+                ...state,
+                timer: action.payload
             }
 
     //

@@ -97,7 +97,7 @@ class ChatRoom extends React.Component {
         >
             <KeyboardAvoidingView style={{ marginTop: '20%' }}>
                 <CountdownCircle
-                    seconds={60}
+                    seconds={this.props.timer}
                     radius={15}
                     borderWidth={5}
                     color="#ff356e"
@@ -148,7 +148,8 @@ const mapStateToProps = ({ auth }) => {
       roomName,
       addedUsers,
       message,
-      messages
+      messages,
+      timer
   } = auth;
 
   return {
@@ -156,7 +157,8 @@ const mapStateToProps = ({ auth }) => {
       roomName,
       addedUsers,
       message,
-      messages
+      messages,
+      timer
   };
 }
 

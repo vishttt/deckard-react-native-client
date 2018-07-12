@@ -18,6 +18,7 @@ import {
     SET_SOCKET_ROOM,
     SET_TIMER,
     SET_ACCEPTED_USERS,
+    ADD_ACCEPTED_USER,
     // CHAT TYPES -------------
     CHANGE_MESSAGE,
     CLEAR_INPUT_BOX,
@@ -180,6 +181,13 @@ export const setAcceptedUsers = (users) => {
     return {
         type: SET_ACCEPTED_USERS,
         payload: users
+    }
+}
+
+export const addAcceptedUser = (user) => {
+    return {
+        type: ADD_ACCEPTED_USER,
+        payload: user
     }
 }
 

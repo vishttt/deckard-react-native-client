@@ -9,10 +9,6 @@ class VotingScreen extends React.Component {
         console.ignoredYellowBox = ['Remote debugger'];
     }
 
-    renderItem({ item }) {
-        return <VoteOnUser user={item} />;
-    }
-
     render() {
         return (
             <ImageBackground 
@@ -22,9 +18,7 @@ class VotingScreen extends React.Component {
                 <List
                     containerStyle={{ backgroundColor: 'rgba(0, 0, 0, 0.85)', marginTop: '25%' }}
                 >
-                    {this.props.addedUsers.map(user => {
-                        console.log(user);
-                        console.log(this.props.user);
+                    {this.props.acceptedUsers.map(user => {
                         if (user !== this.props.user.email.toLowerCase()) {
                             return (
                                 <VoteOnUser user={user} key={Math.random()*Math.random()}/>
@@ -38,8 +32,8 @@ class VotingScreen extends React.Component {
 }
 
 const mapStateToProps = ({ auth }) => {
-    const { addedUsers, totalUsersInRoom, votes, user } = auth;
-    return { addedUsers, totalUsersInRoom, votes, user };
+    const { addedUsers, totalUsersInRoom, votes, user, acceptedUsers } = auth;
+    return { addedUsers, totalUsersInRoom, votes, user, acceptedUsers };
 }
 
 export default connect(mapStateToProps)(VotingScreen);

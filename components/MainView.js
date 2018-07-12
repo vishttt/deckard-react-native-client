@@ -11,6 +11,7 @@ import {
     setSocketRoom,
     setTimer,
     setAcceptedUsers,
+    addAcceptedUser,
 } from '../actions';
 import { FormInput, FormValidationMessage, Button, Header, Card, Divider, Slider } from 'react-native-elements';
 import AddedUser from './AddedUser';
@@ -51,6 +52,7 @@ class MainView extends React.Component {
             // console.log('this.props.user email', this.props.user.email);
             if (data.addedUsers.includes(this.props.user.email.toLowerCase()) && this.props.user.email !== data.roomCreator) {
                 this.props.setTimer(data.timer);
+                this.props.addAcceptedUser(data.roomCreator);
                 this.setState({ 
                     invited: true,
                     invitedToRoomID: data.roomID,
@@ -63,6 +65,9 @@ class MainView extends React.Component {
 
         this.socket.on('all users ready', data => {
             this.props.setAcceptedUsers(data.acceptedUsersAliases);
+            for (let acceptedUser of data.acceptedUsers) {
+                this.props.addAcceptedUser(acceptedUser);
+            }
             this.setState({
                 waiting: false
             });
@@ -322,5 +327,6 @@ export default connect(mapStateToProps, {
     connectSocket,
     setSocketRoom,
     setTimer,
-    setAcceptedUsers
+    setAcceptedUsers,
+    addAcceptedUser
 })(MainView);

@@ -16,6 +16,7 @@ import {
     SET_SOCKET_ROOM,
     SET_TIMER,
     SET_ACCEPTED_USERS,
+    ADD_ACCEPTED_USER,
     // CHAT TYPES -------------
     CHANGE_MESSAGE,
     CLEAR_INPUT_BOX,
@@ -63,6 +64,7 @@ const INITIAL_STATE = {
 
     timer: 0,
     acceptedUsersAliases: null,
+    acceptedUsers: [],
 
     //
     // ─── VOTE STATE ─────────────────────────────────────────────────────────────────
@@ -156,6 +158,11 @@ export default (state = INITIAL_STATE, action) => {
             return {
                 ...state,
                 acceptedUsersAliases: action.payload
+            }
+        case ADD_ACCEPTED_USER:
+            return {
+                ...state,
+                acceptedUsers: [ ...state.acceptedUsers, action.payload ]
             }
 
     //

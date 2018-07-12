@@ -42,7 +42,7 @@ class VoteOnUser extends React.Component {
                 <View>
                     <ListItem
                         key={Math.random()*Math.random()}
-                        title={this.props.user}
+                        title={this.props.acceptedUsersAliases[this.props.user][0]}
                         titleStyle={{ color: '#b7bfcc' }}
                         hideChevron
                     />
@@ -66,8 +66,8 @@ class VoteOnUser extends React.Component {
 }
 
 const mapStateToProps = ({ auth }) => {
-    const { votes, finishedVoting } = auth;
-    return { votes, finishedVoting };
+    const { votes, finishedVoting, acceptedUsersAliases } = auth;
+    return { votes, finishedVoting, acceptedUsersAliases };
 }
 
 export default connect(mapStateToProps, { guessAI, guessHuman })(VoteOnUser);

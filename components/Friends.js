@@ -1,6 +1,6 @@
 import React from 'react';
-import { ImageBackground, TouchableOpacity, ScrollView, FlatList } from 'react-native';
-import { Card, Header, Text, SearchBar } from 'react-native-elements';
+import { ImageBackground, TouchableOpacity, ScrollView, FlatList, View } from 'react-native';
+import { Card, Header, Text, SearchBar, Button } from 'react-native-elements';
 import LeftMenu from './LeftMenu';
 
 class Friends extends React.Component {
@@ -8,16 +8,18 @@ class Friends extends React.Component {
         super();
         this.state = {
             friends: [
-                {email: 'friend1@gmail.com'}, 
-                {email: 'friend2@gmail.com'}, 
-                {email: 'friend3@gmail.com'}, 
-                {email: 'friend4@gmail.com',},
-                {email: 'friend5@gmail.com'}, 
-                {email: 'friend6@gmail.com'}, 
-                {email: 'friend7@gmail.com'}, 
-                {email: 'friend8@gmail.com'}, 
-                {email: 'friend9@gmail.com'}, 
-                {email: 'friend10@gmail.com'}, 
+                // {email: 'joy.kimm@gmail.com'},
+                {email: 'alex_the_don_donesky@hotmail.com'}, 
+                {email: 'mitchbones@gmail.com'}, 
+                {email: 'trajansmith@gmail.com'}, 
+                {email: 'yikes_joe@yahoo.com'}, 
+                {email: 'snyperyflechui@gmail.com',},
+                {email: 'jacobi@gmail.com'}, 
+                {email: 'robakagitmoneygithub@gmail.com'}, 
+                {email: 'netters@gmail.com'}, 
+                {email: 'trevvvvv@gmail.com'}, 
+                {email: 'ironmanraph@gmail.com'}, 
+                {email: 'matt_the_dad@aol.com'}, 
             ]
         }
     }
@@ -35,13 +37,20 @@ class Friends extends React.Component {
                     leftComponent={<LeftMenu/>}
                 />
 
+                <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'center', alignItems: 'stretch' }}>
                 <SearchBar
-                    containerStyle={{ backgroundColor: 'rgba(0,0,0,0.5)' }}
+                    containerStyle={{ backgroundColor: 'rgba(0,0,0,0.5)', minWidth: '65%' }}
                     placeholder='Search for friends'
                 />
+                <Button
+                 title='Add'
+                 raised
+                 backgroundColor="rgba(0, 0, 0, 0.5)"
+                />
+                </View>
 
                 <Card
-                    containerStyle={{ backgroundColor: 'rgba(0,0,0,0.5)', marginTop: '1.5%', height: '75%', borderWidth: 0 }}
+                    containerStyle={{ backgroundColor: 'rgba(0,0,0,0.5)', height: '80%', borderWidth: 0 }}
                     title='Friendly Bots'
                     titleStyle={{ color: '#b7bfcc' }}
                 >

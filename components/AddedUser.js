@@ -26,6 +26,7 @@ class AddedUser extends React.Component {
                 rightIcon={ <Ionicons name='ios-close' size={50} color='#b7bfcc' /> }
                 containerStyle={{
                     backgroundColor: "rgba(0, 0, 0, 0.5)",
+                    height: 55
                 }}
             />
         )

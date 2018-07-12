@@ -222,6 +222,14 @@ class LoginForm extends React.Component {
                             value={this.props.password}
                         />
 
+                        <FormInput
+                            secureTextEntry
+                            placeholder="verify password"
+                            placeholderTextColor='#b7bfcc'
+                            // onChangeText={this.onVerifyPasswordChange.bind(this)}
+                            // value={this.props.verifyPassword}
+                        />
+
                         {this.renderError()}
 
                         <Divider style={{ backgroundColor: 'rgba(0, 0, 0, 0)', height: 10 }}/>
@@ -231,7 +239,8 @@ class LoginForm extends React.Component {
                             loading={this.props.signupLoading}
                             raised
                             onPress={this.onSignUpButtonPress.bind(this)}
-                            backgroundColor="rgba(0, 0, 0, 0.5)"
+                            backgroundColor="#232323"
+                            rounded
                         />
                     </KeyboardAvoidingView>
                 </ImageBackground>

@@ -9,7 +9,8 @@ import {
     removeUser,
     connectSocket,
     setSocketRoom,
-    setTimer
+    setTimer,
+    setAcceptedUsers,
 } from '../actions';
 import { FormInput, FormValidationMessage, Button, Header, Card, Divider, Slider } from 'react-native-elements';
 import AddedUser from './AddedUser';
@@ -60,7 +61,8 @@ class MainView extends React.Component {
             }
         });
 
-        this.socket.on('all users ready', () => {
+        this.socket.on('all users ready', data => {
+            this.props.setAcceptedUsers(data.acceptedUsersAliases);
             this.setState({
                 waiting: false
             });
@@ -211,70 +213,6 @@ class MainView extends React.Component {
                     />
 
                     {this.toggleInviteView()}
-
-                    {/* <View style={{ marginTop: '3%' }}>
-
-                        <View style={{flex: 1, alignItems: 'stretch', justifyContent: 'center', width: '80%', marginLeft: '10%' }}>
-                            <Slider
-                                value={this.props.timer}
-                                maximumValue={60}
-                                step={1}
-                                onValueChange={this.setTime.bind(this)}
-                            />
-                        </View>
-
-                        <Divider style={{ backgroundColor: 'rgba(0, 0, 0, 0)', height: 15 }}/>
-
-                        <Text
-                        style={{ color: '#b7bfcc' }}
-                        >Game Timer: {this.props.timer}</Text>
-
-                        <Divider style={{ backgroundColor: 'rgba(0, 0, 0, 0)', height: 5 }}/>
-
-    
-                        <FormInput
-                            placeholder="Room Name"
-                            placeholderTextColor='#b7bfcc'
-                            onChangeText={this.onRoomChange.bind(this)}
-                            value={this.props.roomName}
-                        />
-    
-                        <FormInput
-                            placeholder="Add Users to Room"
-                            placeholderTextColor='#b7bfcc'
-                            onChangeText={this.onSearchedUsernameChange.bind(this)}
-                            value={this.props.searchedUsername}
-                            ref={input => this.input = input}
-                        />
-    
-                        {this.renderSelfError()}
-                        {this.renderError()}
-    
-                        <Button
-                            title='Add User'
-                            raised
-                            onPress={this.addUser.bind(this)}
-                            backgroundColor="rgba(0, 0, 0, 0.5)"
-                        />
-    
-                        <Button
-                            title='Create Room'
-                            raised
-                            onPress={this.createRoom.bind(this)}
-                            backgroundColor="rgba(0, 0, 0, 0.5)"
-                        />
-    
-                        <Text
-                            style={{ color: '#b7bfcc' }}
-                        >Users {this.props.totalUsersInRoom}/5</Text>
-    
-                        {this.props.addedUsers.map(user => (
-                            <AddedUser
-                                user={user}
-                                key={user}
-                            />
-                        ))}
-                    </View> */}
                 </ImageBackground>
             )
         }
@@ -383,5 +321,6 @@ export default connect(mapStateToProps, {
     removeUser,
     connectSocket,
     setSocketRoom,
-    setTimer
+    setTimer,
+    setAcceptedUsers
 })(MainView);

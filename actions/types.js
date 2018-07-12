@@ -30,3 +30,4 @@ export const GUESS_HUMAN = 'guess_human';
 export const NEW_GAME = 'new_game';
 
 export const SET_TIMER = 'set_timer';
+export const SET_ACCEPTED_USERS = 'set_accepted_users';

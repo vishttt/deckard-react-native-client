@@ -25,7 +25,7 @@ class ChatRoom extends React.Component {
     // received a message from socket
     this.props.socket.on('received new message', data => {
         this.setState({
-            messages: [ ...this.state.messages, data]
+            messages: [ ...this.state.messages, { message: data.message, user: data.user }]
         })
     });
   }
@@ -57,11 +57,11 @@ class ChatRoom extends React.Component {
 
   // send message to socket (called when submit button pressed)
   sendMessage() {
-    console.log('sendMessage hit');
-    this.sendMessageToMitsuku();
+    // console.log('sendMessage hit');
+    // this.sendMessageToMitsuku();
 
     console.log('sendMessage second function hit');
-    this.props.socket.emit('send new message', this.props.message);
+    this.props.socket.emit('send new message', {message: this.props.message, user: this.props.user.email.toLowerCase()});
     this.props.clearInputBox();
 
     // fetch('https://kakko.pandorabots.com/pandora/talk?botid=87437a824e345a0d&skin=chat', {
@@ -86,6 +86,9 @@ class ChatRoom extends React.Component {
   }
 
   onTimeout() {
+      this.setState({
+          messages: []
+      });
       Actions.votemain();
   }
 
@@ -115,7 +118,7 @@ class ChatRoom extends React.Component {
                         return (
                         <ListItem
                             key={Math.random()*Math.random()}
-                            title={message}
+                            title={`${this.props.acceptedUsersAliases[message.user]}: ${message.message}`}
                             titleStyle={{ color: '#b7bfcc'}}
                             hideChevron
                         />
@@ -149,7 +152,9 @@ const mapStateToProps = ({ auth }) => {
       addedUsers,
       message,
       messages,
-      timer
+      timer,
+      acceptedUsersAliases,
+      user
   } = auth;
 
   return {
@@ -158,7 +163,9 @@ const mapStateToProps = ({ auth }) => {
       addedUsers,
       message,
       messages,
-      timer
+      timer,
+      acceptedUsersAliases,
+      user
   };
 }
 

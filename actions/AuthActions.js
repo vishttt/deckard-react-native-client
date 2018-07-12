@@ -17,6 +17,7 @@ import {
     CONNECT_SOCKET,
     SET_SOCKET_ROOM,
     SET_TIMER,
+    SET_ACCEPTED_USERS,
     // CHAT TYPES -------------
     CHANGE_MESSAGE,
     CLEAR_INPUT_BOX,
@@ -172,6 +173,13 @@ export const setTimer = (time) => {
     return {
         type: SET_TIMER,
         payload: time
+    }
+}
+
+export const setAcceptedUsers = (users) => {
+    return {
+        type: SET_ACCEPTED_USERS,
+        payload: users
     }
 }
 

@@ -3,7 +3,6 @@ import { View } from 'react-native';
 import { ListItem, Button } from 'react-native-elements';
 import { connect } from 'react-redux';
 import { guessAI, guessHuman } from '../../actions';
-import { Actions } from 'react-native-router-flux';
 
 class VoteOnUser extends React.Component {
     state = {
@@ -18,10 +17,6 @@ class VoteOnUser extends React.Component {
             AI: true,
             HUMAN: false
         });
-        console.log('after setstate ai');
-        if (this.props.finishedVoting) {
-            Actions.results();
-        }
     }
 
     voteHuman() {
@@ -31,10 +26,6 @@ class VoteOnUser extends React.Component {
             AI: false,
             HUMAN: true
         });
-        console.log('after set state human');
-        if (this.props.finishedVoting) {
-            Actions.results();
-        }
     }
 
     render() {

@@ -17,6 +17,7 @@ import {
     SET_TIMER,
     SET_ACCEPTED_USERS,
     ADD_ACCEPTED_USER,
+    SET_ROOM_NAME,
     // CHAT TYPES -------------
     CHANGE_MESSAGE,
     CLEAR_INPUT_BOX,
@@ -164,6 +165,11 @@ export default (state = INITIAL_STATE, action) => {
                 ...state,
                 acceptedUsers: [ ...state.acceptedUsers, action.payload ]
             }
+        case SET_ROOM_NAME:
+            return {
+                ...state,
+                roomName: action.payload
+            }
 
     //
     // Chat Reducers ----------------------------------------------------------------
@@ -183,20 +189,20 @@ export default (state = INITIAL_STATE, action) => {
             let votesCopyAI = state.votes;
             votesCopyAI[action.payload] = 'AI'
 
-            if (Object.entries(votesCopyAI).length === state.totalUsersInRoom - 2) {
-                return { ...state, votes: votesCopyAI, finishedVoting: true }
-            } else {
-                return { ...state, votes: votesCopyAI }
-            }
+            // if (Object.entries(votesCopyAI).length === state.acceptedUsers.length - 1) {
+            //     return { ...state, votes: votesCopyAI, finishedVoting: true }
+            // } else {
+                return { ...state, votes: votesCopyAI };
+            // }
         case GUESS_HUMAN:
             let votesCopy = state.votes;
             votesCopy[action.payload] = 'HUMAN';
 
-            if (Object.entries(votesCopy).length === state.totalUsersInRoom - 2) {
-                return { ...state, votes: votesCopy, finishedVoting: true }
-            } else {
-                return { ...state, votes: votesCopy }
-            }
+            // if (Object.entries(votesCopy).length === state.acceptedUsers.length - 1) {
+            //     return { ...state, votes: votesCopy, finishedVoting: true }
+            // } else {
+                return { ...state, votes: votesCopy };
+            // }
 
     //
     // New Game Reducers ----------------------------------------------------------------

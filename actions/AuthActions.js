@@ -19,6 +19,7 @@ import {
     SET_TIMER,
     SET_ACCEPTED_USERS,
     ADD_ACCEPTED_USER,
+    SET_ROOM_NAME,
     // CHAT TYPES -------------
     CHANGE_MESSAGE,
     CLEAR_INPUT_BOX,
@@ -188,6 +189,13 @@ export const addAcceptedUser = (user) => {
     return {
         type: ADD_ACCEPTED_USER,
         payload: user
+    }
+}
+
+export const setRoomname = (roomname) => {
+    return {
+        type: SET_ROOM_NAME,
+        payload: roomname
     }
 }
 

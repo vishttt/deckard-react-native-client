@@ -8,7 +8,6 @@ import MainView from './components/MainView';
 import WaitingRoom from './components/room/WaitingRoom';
 import ChatRoom from './components/room/ChatRoom';
 import VotingScreen from './components/room/VotingScreen';
-import Results from './components/room/Results';
 import FinalScore from './components/room/FinalScore';
 import { connect } from 'react-redux';
 import { logoutUser, newGame } from './actions';
@@ -21,7 +20,7 @@ class RouterComponent extends React.Component {
 
     onNewGamePress() {
         this.props.newGame();
-        Actions.main();
+        Actions.home();
     }
 
     onHomeButtonPress() {
@@ -70,14 +69,8 @@ class RouterComponent extends React.Component {
                     
                     <Scene key="main">
                         <Scene
-                            // leftTitle="Home"
-                            // onLeft={this.onHomeButtonPress.bind(this)}
                             key="mainView"
                             component={MainView}
-                            // title="DECKARD.IO"
-                            // titleStyle={{ color: '#b7bfcc' }}
-                            // leftButtonTextStyle={{ color: '#b7bfcc' }}
-                            // navTransparent
                             hideNavBar
                             initial
                         />
@@ -110,15 +103,6 @@ class RouterComponent extends React.Component {
                             component={VotingScreen}
                             title="Cast your votes!"
                             titleStyle={{ color: '#b7bfcc' }}
-                            navTransparent
-                        />
-                    </Scene>
-
-                    <Scene key="resultsmain">
-                        <Scene
-                            key="results"
-                            component={Results}
-                            title="Results"
                             navTransparent
                         />
                     </Scene>

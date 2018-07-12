@@ -25,19 +25,19 @@ class Profile extends React.Component {
                         source={{uri: `https://robohash.org/${this.props.user.email}?set=set4`}}
                     />
 
-                    <Card containerStyle={{ backgroundColor: '#000', opacity: 0.8, width: '75%' }}>
+                    <Card containerStyle={{ backgroundColor: '#000', opacity: 0.8, width: '75%', borderRadius: 35 }}>
                     <Text style={{ color: '#b7bfcc', textAlign: 'center', fontSize: 20 }}>{this.props.user.email}</Text>
                     </Card>
 
-                    <Card containerStyle={{ backgroundColor: '#000', opacity: 0.8, width: '75%' }}>
+                    <Card containerStyle={{ backgroundColor: '#000', opacity: 0.8, width: '75%', borderRadius: 35 }}>
                     <Text style={{ color: '#b7bfcc', textAlign: 'center', fontSize: 20 }}>Games Played: 0</Text>
                     </Card>
 
-                    <Card containerStyle={{ backgroundColor: '#000', opacity: 0.8, width: '75%' }}>
+                    <Card containerStyle={{ backgroundColor: '#000', opacity: 0.8, width: '75%', borderRadius: 35 }}>
                     <Text style={{ color: '#b7bfcc', textAlign: 'center', fontSize: 20 }}>Games Won: 0</Text>
                     </Card>
 
-                    <Card containerStyle={{ backgroundColor: '#000', opacity: 0.8, width: '75%' }}>
+                    <Card containerStyle={{ backgroundColor: '#000', opacity: 0.8, width: '75%', borderRadius: 35 }}>
                     <Text style={{ color: '#b7bfcc', textAlign: 'center', fontSize: 20 }}>Lifetime Score: 0</Text>
                     </Card>
                 </View>

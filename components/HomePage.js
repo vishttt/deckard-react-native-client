@@ -26,30 +26,30 @@ class HomePage extends React.Component {
         } else {
             return (
                 <Card
-                containerStyle={{ backgroundColor: 'rgba(0,0,0,0.5)', marginTop: '23%' }}
+                containerStyle={{ backgroundColor: 'rgba(0,0,0,0.5)', marginTop: '23%', borderWidth: 0 }}
                 title='Welcome Human'
                 titleStyle={{ color: '#b7bfcc' }}
                 >
                     <TouchableOpacity onPress={this.onRulesPress.bind(this)}>
-                        <Card containerStyle={{ backgroundColor: 'rgba(0,0,0,0.5)' }}>
+                        <Card containerStyle={{ backgroundColor: 'rgba(0,0,0,0.5)', borderRadius: 35 }}>
                             <Text style={{ color: '#b7bfcc', textAlign: 'center', fontSize: 20 }}>Rules</Text>
                         </Card>
                     </TouchableOpacity>
 
                     <TouchableOpacity onPress={Actions.profile}>
-                        <Card containerStyle={{ backgroundColor: 'rgba(0,0,0,0.5)' }}>
+                        <Card containerStyle={{ backgroundColor: 'rgba(0,0,0,0.5)', borderRadius: 35 }}>
                             <Text style={{ color: '#b7bfcc', textAlign: 'center', fontSize: 20 }}>Profile</Text>
                         </Card>
                     </TouchableOpacity>
 
                     <TouchableOpacity onPress={Actions.friends}>
-                        <Card containerStyle={{ backgroundColor: 'rgba(0,0,0,0.5)' }}>
+                        <Card containerStyle={{ backgroundColor: 'rgba(0,0,0,0.5)', borderRadius: 35 }}>
                             <Text style={{ color: '#b7bfcc', textAlign: 'center', fontSize: 20 }}>Friends</Text>
                         </Card>
                     </TouchableOpacity>
 
                     <TouchableOpacity onPress={Actions.main}>
-                        <Card containerStyle={{ backgroundColor: 'rgba(0,0,0,0.5)' }}>
+                        <Card containerStyle={{ backgroundColor: 'rgba(0,0,0,0.5)', borderRadius: 35 }}>
                             <Text style={{ color: '#b7bfcc', textAlign: 'center', fontSize: 20 }}>New Game</Text>
                         </Card>
                     </TouchableOpacity>
@@ -72,7 +72,7 @@ class HomePage extends React.Component {
                 >
                     <TouchableOpacity onPress={this.onRulesPress.bind(this)}>
                     <Card
-                        containerStyle={{ backgroundColor: 'rgba(0,0,0,0.5)', marginTop: 90 }}
+                        containerStyle={{ backgroundColor: 'rgba(0,0,0,0.5)', marginTop: 90, borderWidth: 0 }}
                         title='How To Play'
                         titleStyle={{ color: '#b7bfcc' }}
                     >

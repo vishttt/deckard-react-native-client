@@ -125,7 +125,7 @@ class MainView extends React.Component {
             style={{ flex: 1, backgroundColor: '#000' }}
             >
                 <Card
-                    containerStyle={{ backgroundColor: 'rgba(0,0,0,0.5)', marginTop: 90 }}
+                    containerStyle={{ backgroundColor: 'rgba(0,0,0,0.5)', marginTop: 90, borderWidth: 0 }}
                     title={'Waiting for other bots to join...'}
                     titleStyle={{ color: '#b7bfcc' }}
                 >

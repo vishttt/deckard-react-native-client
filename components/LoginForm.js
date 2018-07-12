@@ -147,9 +147,9 @@ class LoginForm extends React.Component {
                             loading={this.props.loading}
                             raised
                             onPress={this.onButtonPress.bind(this)}
-                            backgroundColor="rgba(0, 0, 0, 0.5)"
-                            borderRadius={35}
-                            containerViewStyle={{ borderRadius: 35 }}
+                            backgroundColor="#232323"
+                            // opacity={0.85}
+                            rounded
                         />
 
                         <SocialIcon

@@ -50,7 +50,7 @@ class Friends extends React.Component {
                     data={this.state.friends}
                     renderItem={(item) => {
                         return (
-                            <Card containerStyle={{ backgroundColor: '#000', opacity: 0.8 }}>
+                            <Card containerStyle={{ backgroundColor: '#000', opacity: 0.8, borderRadius: 35 }}>
                             <Text style={{ color: '#b7bfcc', textAlign: 'center', fontSize: 20 }}>{item.item.email}</Text>
                             </Card>
                         )

@@ -111,7 +111,7 @@ class RouterComponent extends React.Component {
                         <Scene
                             key="voting"
                             component={VotingScreen}
-                            title="Cast your votes!"
+                            title="WHO'S THE BOT"
                             titleStyle={{ color: 'white' }}
                             navTransparent
                         />
@@ -121,9 +121,11 @@ class RouterComponent extends React.Component {
                         <Scene
                             key="finalscore"
                             component={FinalScore}
-                            titleStyle={{ color: 'white' }}
-                            leftTitle="New Game"
-                            onLeft={this.onNewGamePress.bind(this)}
+                            // title='GG'
+                            // titleStyle={{ color: 'white' }}
+                            // leftTitle="New Game"
+                            // onLeft={this.onNewGamePress.bind(this)}
+                            hideNavBar
                             navTransparent
                         />
                     </Scene>

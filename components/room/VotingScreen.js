@@ -2,8 +2,9 @@ import React from 'react';
 import { ImageBackground, View } from 'react-native';
 import { connect } from 'react-redux';
 import VoteOnUser from './VoteOnUser';
-import { List, Text, Button, Card } from 'react-native-elements';
+import { List, Text, Button, Card, Divider } from 'react-native-elements';
 import { Actions } from 'react-native-router-flux';
+import { Ionicons } from '@expo/vector-icons';
 
 class VotingScreen extends React.Component {
     constructor() {
@@ -25,16 +26,19 @@ class VotingScreen extends React.Component {
             <Card
             containerStyle={{ backgroundColor: 'rgba(0,0,0,0.5)', marginTop: 90, borderWidth: 0 }}
             title={'Waiting for other bots to vote...'}
-            titleStyle={{ color: '#b7bfcc' }}
+            titleStyle={{ color: 'white' }}
             >
 
         </Card>
         } else {
             return (
-                <View>
-                    <List
-                        containerStyle={{ backgroundColor: 'rgba(0, 0, 0, 0.85)', marginTop: '25%' }}
-                    >
+                <View style={{ marginTop: '25%', justifyContent: 'center', alignItems: 'center' }}>
+
+                <Ionicons name='ios-help-circle' color='white' size={100}/>
+
+                    {/* <List
+                        containerStyle={{ backgroundColor: '#000', opacity: 1, marginTop: '25%' }}
+                    > */}
                         {this.props.acceptedUsers.map(user => {
                             if (user !== this.props.user.email.toLowerCase()) {
                                 return (
@@ -42,12 +46,15 @@ class VotingScreen extends React.Component {
                                 )
                             }
                         })}
-                    </List>
+                    {/* </List> */}
+
+                    <Divider style={{ backgroundColor: 'rgba(0, 0, 0, 0)', height: 20 }}/>
 
                     <Button
                         title='Submit'
-                        titleStyle={{ color: '#b7bfcc' }}
+                        titleStyle={{ color: 'white' }}
                         containerStyle={{ marginTop: 90, opacity: 0.5}}
+                        containerViewStyle={{ width: '85%' }}
                         backgroundColor='#000000'
                         outline
                         rounded

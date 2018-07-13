@@ -2,7 +2,7 @@ import React from "react";
 import { onChangeMessage, clearInputBox, receivedMessage } from '../../actions';
 import CountdownCircle from 'react-native-countdown-circle';
 import { Actions } from 'react-native-router-flux';
-import { View, Text, ImageBackground, FlatList, KeyboardAvoidingView, TextInput, TouchableOpacity } from 'react-native';
+import { View, Text, ImageBackground, ScrollView, KeyboardAvoidingView, TextInput, TouchableOpacity } from 'react-native';
 import { FormLabel, FormInput, Button, ListItem, List } from 'react-native-elements';
 import { Ionicons } from '@expo/vector-icons';
 import { connect } from 'react-redux';
@@ -99,35 +99,37 @@ class ChatRoom extends React.Component {
             source={require('../../assets/splash_blur.png')}
             style={{ flex: 1, backgroundColor: '#000' }}
         >
-            <KeyboardAvoidingView style={{ marginTop: '20%' }}>
-                <CountdownCircle
-                    seconds={this.props.timer}
-                    radius={15}
-                    borderWidth={5}
-                    color="#ff356e"
-                    bgColor="#000"
-                    textStyle={{ fontSize: 12, color: '#b7bfcc' }}
-                    onTimeElapsed={this.onTimeout.bind(this)}
-                />
+            <KeyboardAvoidingView behavior='padding' style={{flex: 1}}>
+                <View style={{ paddingTop: '8%', paddingLeft: '8%' }}>
+                    <CountdownCircle
+                        seconds={this.props.timer}
+                        radius={15}
+                        borderWidth={5}
+                        color="#ff356e"
+                        bgColor="#000"
+                        textStyle={{ fontSize: 12, color: 'white' }}
+                        onTimeElapsed={this.onTimeout.bind(this)}
+                    />
+                </View>
 
-                <FormLabel>{this.props.roomName}</FormLabel>
+                <FormLabel labelStyle={{ color: 'white' }}>{this.props.roomName}</FormLabel>
 
-                <View style={{ position: 'absolute', top: '75%', alignItems: 'center', width: '100%' }}>
-                <List
-                    containerStyle={{ backgroundColor: 'rgba(0,0,0,0)' }}
-                >
-                    {this.state.messages.map(message => {
-                        return (
-                        <ListItem
-                            key={Math.random()*Math.random()}
-                            title={`${this.props.acceptedUsersAliases[message.user]}: ${message.message}`}
-                            titleStyle={{ color: 'white'}}
-                            textInputStyle={{ color: 'white' }}
-                            hideChevron
-                        />
-                        )
-                    })}
-                </List>
+                <View style={{ width: '85%', height: '70%', alignSelf: 'center' }}>
+                    <ScrollView
+                        containerStyle={{ backgroundColor: 'rgba(0,0,0,0)' }}
+                    >
+                        {this.state.messages.map(message => {
+                            return (
+                            <ListItem
+                                key={Math.random()*Math.random()}
+                                title={`${this.props.acceptedUsersAliases[message.user]}: ${message.message}`}
+                                titleStyle={{ color: 'white'}}
+                                textInputStyle={{ color: 'white' }}
+                                hideChevron
+                            />
+                            )
+                        })}
+                    </ScrollView>
                 </View>
 
                 {/* <FormInput
@@ -140,40 +142,35 @@ class ChatRoom extends React.Component {
                 /> */}
                 <View style={{ 
                     position: 'absolute', 
-                    top: '75%', 
+                    top: '86%', 
                     alignItems: 'center', 
                     width: '100%', 
-                    flex: 1, 
-                    flexDirection: 'row', 
-                    justifyContent: 'center', 
-                    alignItems: 'stretch', 
-                    backgroundColor: 'rgba(0,0,0,0)'  
+                    // flex: 1, 
+                    // flexDirection: 'row', 
+                    // justifyContent: 'center', 
+                    // alignItems: 'stretch', 
+                    // backgroundColor: 'rgba(0,0,0,0)'  
                 }}>
-                <TextInput 
-                    placeholder='Say something...'
-                    placeholderTextColor='black'
-                    borderRadius={35}
-                    style={{ color: 'black', paddingLeft: 15 }}
-                    backgroundColor='white'
-                    minWidth='70%'
-                    height={50}
-                    onChangeText={this.onChangeMessage.bind(this)}
-                    value={this.props.message}  
-                />
+                    <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'center', alignItems: 'stretch', backgroundColor: 'rgba(0,0,0,0)' }}>
+                        <TextInput 
+                            placeholder='Say something...'
+                            placeholderTextColor='black'
+                            borderRadius={35}
+                            style={{ color: 'black', paddingLeft: 15 }}
+                            backgroundColor='white'
+                            minWidth='70%'
+                            height={50}
+                            onChangeText={this.onChangeMessage.bind(this)}
+                            value={this.props.message}  
+                        />
 
-                <TouchableOpacity 
-                    style={{ paddingTop: 7, paddingLeft: 7 }}
-                    onPress={this.sendMessage.bind(this)}
-                >
-                    <Ionicons name='ios-arrow-dropright' size={35} color='white' />
-                </TouchableOpacity>
-
-                {/* <Button
-                    title='Submit'
-                    raised
-                    onPress={this.sendMessage.bind(this)}
-                    backgroundColor="rgba(0, 0, 0, 0.5)"
-                /> */}
+                        <TouchableOpacity 
+                            style={{ paddingTop: 7, paddingLeft: 7 }}
+                            onPress={this.sendMessage.bind(this)}
+                        >
+                            <Ionicons name='ios-arrow-dropright' size={35} color='white' />
+                        </TouchableOpacity>
+                    </View>
                 </View>
             </KeyboardAvoidingView>
         </ImageBackground>

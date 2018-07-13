@@ -20,7 +20,7 @@ class RouterComponent extends React.Component {
     }
 
     onNewGamePress() {
-        this.props.newGame();
+        // this.props.newGame();
         Actions.home();
     }
 
@@ -101,8 +101,8 @@ class RouterComponent extends React.Component {
                             onLeft={() => {}}
                             key="room"
                             component={ChatRoom}
-                            title="Who's the bot?"
-                            titleStyle={{ color: '#b7bfcc' }}
+                            title="BE THE BOT"
+                            titleStyle={{ color: 'white' }}
                             navTransparent
                         />
                     </Scene>
@@ -112,7 +112,7 @@ class RouterComponent extends React.Component {
                             key="voting"
                             component={VotingScreen}
                             title="Cast your votes!"
-                            titleStyle={{ color: '#b7bfcc' }}
+                            titleStyle={{ color: 'white' }}
                             navTransparent
                         />
                     </Scene>
@@ -121,7 +121,7 @@ class RouterComponent extends React.Component {
                         <Scene
                             key="finalscore"
                             component={FinalScore}
-                            titleStyle={{ color: '#b7bfcc' }}
+                            titleStyle={{ color: 'white' }}
                             leftTitle="New Game"
                             onLeft={this.onNewGamePress.bind(this)}
                             navTransparent

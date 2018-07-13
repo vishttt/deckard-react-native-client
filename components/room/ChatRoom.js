@@ -2,8 +2,9 @@ import React from "react";
 import { onChangeMessage, clearInputBox, receivedMessage } from '../../actions';
 import CountdownCircle from 'react-native-countdown-circle';
 import { Actions } from 'react-native-router-flux';
-import { View, Text, ImageBackground, FlatList, KeyboardAvoidingView } from 'react-native';
+import { View, Text, ImageBackground, FlatList, KeyboardAvoidingView, TextInput, TouchableOpacity } from 'react-native';
 import { FormLabel, FormInput, Button, ListItem, List } from 'react-native-elements';
+import { Ionicons } from '@expo/vector-icons';
 import { connect } from 'react-redux';
 import axios from 'axios';
 import IP from '../../IP';
@@ -111,34 +112,69 @@ class ChatRoom extends React.Component {
 
                 <FormLabel>{this.props.roomName}</FormLabel>
 
+                <View style={{ position: 'absolute', top: '75%', alignItems: 'center', width: '100%' }}>
                 <List
-                    containerStyle={{ backgroundColor: 'rgba(0,0,0,0.85)' }}
+                    containerStyle={{ backgroundColor: 'rgba(0,0,0,0)' }}
                 >
                     {this.state.messages.map(message => {
                         return (
                         <ListItem
                             key={Math.random()*Math.random()}
                             title={`${this.props.acceptedUsersAliases[message.user]}: ${message.message}`}
-                            titleStyle={{ color: '#b7bfcc'}}
+                            titleStyle={{ color: 'white'}}
+                            textInputStyle={{ color: 'white' }}
                             hideChevron
                         />
                         )
                     })}
                 </List>
+                </View>
 
-                <FormInput
-                    placeholder='Be the Bot'
-                    placeholderTextColor='#b7bfcc'
+                {/* <FormInput
+                    placeholder='Say something...'
+                    placeholderTextColor='black'
+                    onChangeText={this.onChangeMessage.bind(this)}
+                    imputStyle={{ color: 'black' }}
+                    borderRadius={35}
+                    value={this.props.message}  
+                /> */}
+                <View style={{ 
+                    position: 'absolute', 
+                    top: '75%', 
+                    alignItems: 'center', 
+                    width: '100%', 
+                    flex: 1, 
+                    flexDirection: 'row', 
+                    justifyContent: 'center', 
+                    alignItems: 'stretch', 
+                    backgroundColor: 'rgba(0,0,0,0)'  
+                }}>
+                <TextInput 
+                    placeholder='Say something...'
+                    placeholderTextColor='black'
+                    borderRadius={35}
+                    style={{ color: 'black', paddingLeft: 15 }}
+                    backgroundColor='white'
+                    minWidth='70%'
+                    height={50}
                     onChangeText={this.onChangeMessage.bind(this)}
                     value={this.props.message}  
                 />
 
-                <Button
+                <TouchableOpacity 
+                    style={{ paddingTop: 7, paddingLeft: 7 }}
+                    onPress={this.sendMessage.bind(this)}
+                >
+                    <Ionicons name='ios-arrow-dropright' size={35} color='white' />
+                </TouchableOpacity>
+
+                {/* <Button
                     title='Submit'
                     raised
                     onPress={this.sendMessage.bind(this)}
                     backgroundColor="rgba(0, 0, 0, 0.5)"
-                />
+                /> */}
+                </View>
             </KeyboardAvoidingView>
         </ImageBackground>
     );

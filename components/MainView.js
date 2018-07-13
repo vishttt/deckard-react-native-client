@@ -205,17 +205,19 @@ class MainView extends React.Component {
                         visible={this.state.invited}
                     >
                         <Card
-                            containerStyle={{ backgroundColor: '#000', opacity: 0.9, marginTop: 90, borderWidth: 0 }}
+                            containerStyle={{ marginTop: 90, borderWidth: 1, borderColor: 'white', borderRadius: 20 }}
                             title={`INVITED TO ROOM ${this.state.invitedToRoomName} by ${this.state.roomCreator}!`}
-                            titleStyle={{ color: '#b7bfcc' }}
+                            textStyle={{ fontSize: 20, fontWeight: 'bold', fontFamily: 'Arial'}}                                
+                            backgroundColor="rgba(0,0,0,0)"
                             >
                             <Button 
                                 title='Accept'
-                                titleStyle={{ color: '#b7bfcc' }}
+                                textStyle={{ fontSize: 12, fontWeight: 'bold', fontFamily: 'Arial', color: 'black'}}                                
                                 containerStyle={{ marginTop: 90 }}
-                                backgroundColor='#000000'
-                                outline
-                                rounded
+                                backgroundColor="rgba(0,0,0,0)"
+                                style={{ borderWidth: 1, borderColor: 'black', borderRadius: 35 }}
+                                large
+                                raised
                                 onPress={() => {
                                     this.socket.emit('join', {roomID: this.state.invitedToRoomID, addedUsers: this.state.addedUsers});
                                     this.socket.emit('accept or decline', {reply: 'accept', user: this.props.user.email.toLowerCase()});
@@ -230,11 +232,12 @@ class MainView extends React.Component {
 
                             <Button
                                 title='Decline'
-                                titleStyle={{ color: '#b7bfcc' }}
-                                containerStyle={{ marginTop: 90, opacity: 0.5}}
-                                backgroundColor='#000000'
-                                outline
-                                rounded
+                                textStyle={{ fontSize: 12, fontWeight: 'bold', fontFamily: 'Arial', color: 'black'}}                                
+                                containerStyle={{ marginTop: 90 }}
+                                backgroundColor="rgba(0,0,0,0)"
+                                style={{ borderWidth: 1, borderColor: 'black', borderRadius: 35 }}
+                                large
+                                raised
                                 onPress={() => {
                                     this.socket.emit('accept or decline', {reply: 'decline', user: this.props.user.email.toLowerCase()});
                                     this.setState({

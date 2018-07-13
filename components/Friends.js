@@ -1,7 +1,10 @@
 import React from 'react';
-import { ImageBackground, TouchableOpacity, ScrollView, FlatList, View } from 'react-native';
+import { ImageBackground, TouchableOpacity, ScrollView, FlatList, View, TextInput } from 'react-native';
 import { Card, Header, Text, SearchBar, Button } from 'react-native-elements';
-import LeftMenu from './LeftMenu';
+import { Ionicons } from '@expo/vector-icons';
+import { connect } from 'react-redux';
+import { addUser } from '../actions';
+import LeftMenuForProfile from './LeftMenuForProfile';
 
 class Friends extends React.Component {
     constructor() {
@@ -19,9 +22,12 @@ class Friends extends React.Component {
                 {email: 'trevvvvv@gmail.com'}, 
                 {email: 'ironmanraph@gmail.com'}, 
                 {email: 'matt_the_dad@aol.com'}, 
-            ]
+            ],
         }
     }
+
+
+
     render() {
         return (
             <ImageBackground 
@@ -32,34 +38,45 @@ class Friends extends React.Component {
                 <Header
                     backgroundColor='rgba(0,0,0,0)'
                     outerContainerStyles={{borderBottomWidth: 0}}
-                    centerComponent={{ text: 'DECKARD.IO', style: { color: '#b7bfcc', fontSize: 18, fontWeight: 'bold' } }}
-                    leftComponent={<LeftMenu/>}
+                    centerComponent={{ text: 'FRIENDS', style: { color: 'white', fontFamily: 'Arial', fontSize: 18, fontWeight: 'bold' } }}
+                    leftComponent={<LeftMenuForProfile/>}
                 />
 
-                <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'center', alignItems: 'stretch' }}>
-                <SearchBar
-                    containerStyle={{ backgroundColor: 'rgba(0,0,0,0.5)', minWidth: '65%' }}
+                <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'center', alignItems: 'stretch', backgroundColor: 'rgba(0,0,0,0)' }}>
+                
+                <TextInput 
                     placeholder='Search for friends'
+                    placeholderTextColor='white'
+                    borderStyle='solid'
+                    borderWidth={1}
+                    borderColor='white'
+                    borderRadius={35}
+                    style={{ color: 'white', paddingLeft: 15 }}
+                    backgroundColor='rgba(0,0,0,0)'
+                    minWidth='70%'
+                    height={50}
                 />
-                <Button
-                 title='Add'
-                 raised
-                 backgroundColor="rgba(0, 0, 0, 0.5)"
-                />
+                <TouchableOpacity style={{ paddingTop: 7, paddingLeft: 7 }}>
+                    <Ionicons name='ios-arrow-dropright' size={35} color='white' />
+                </TouchableOpacity>
                 </View>
 
                 <Card
-                    containerStyle={{ backgroundColor: 'rgba(0,0,0,0.5)', height: '80%', borderWidth: 0 }}
+                    containerStyle={{ backgroundColor: 'rgba(0,0,0,0)', height: '80%', borderWidth: 0 }}
                     title='Friendly Bots'
-                    titleStyle={{ color: '#b7bfcc' }}
+                    titleStyle={{ color: 'white', fontFamily: 'Arial', fontSize: 14 }}
+                    dividerStyle={{ borderWidth: 0 }}
+                    borderBottomWidth={0}
                 >
 
                 <FlatList
                     data={this.state.friends}
                     renderItem={(item) => {
                         return (
-                            <Card containerStyle={{ backgroundColor: '#000', opacity: 0.8, borderRadius: 35 }}>
-                            <Text style={{ color: '#b7bfcc', textAlign: 'center', fontSize: 20 }}>{item.item.email}</Text>
+                            <Card containerStyle={{ backgroundColor: 'rgba(0,0,0,0)', borderRadius: 35, borderColor: 'white' }}>
+                            {/* <TouchableOpacity onPress={this.props.add}> */}
+                            <Text style={{ color: 'white', textAlign: 'center', fontSize: 14 }}>{item.item.email}</Text>
+                            {/* </TouchableOpacity> */}
                             </Card>
                         )
                     }}
@@ -71,4 +88,4 @@ class Friends extends React.Component {
     }
 }
 
-export default Friends;
+export default connect(null, { addUser })(Friends);

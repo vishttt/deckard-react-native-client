@@ -1,5 +1,5 @@
 import React from 'react'
-import { ImageBackground } from 'react-native';
+import { ImageBackground, StatusBar } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 
 class CompanySplash extends React.Component {
@@ -21,6 +21,7 @@ class CompanySplash extends React.Component {
                 source={require('../assets/company_splash.png')}
                 style={{ flex: 1, backgroundColor: '#000'}}
             >
+            <StatusBar hidden/>
             </ImageBackground>
         )
     }

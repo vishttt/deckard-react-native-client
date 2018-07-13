@@ -89,7 +89,7 @@ class HomePage extends React.Component {
                 
                 <Divider style={{ backgroundColor: 'rgba(0, 0, 0, 0)', height: 10 }}/>
                 
-                <Text style={{ fontFamily: 'Arial', color: 'white', textAlign: 'justify', fontSize: 14, lineHeight: 24 }}>
+                <Text style={{ fontFamily: 'Arial', color: 'white', textAlign: 'center', fontSize: 14, lineHeight: 24 }}>
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed blandit, nulla ac vulputate aliquam, magna urna ultricies nulla, vel scelerisque nulla sem eget felis. Donec a mauris tellus. Donec sem lectus, condimentum eu justo sed, viverra varius lectus. Maecenas mi lacus, maximus in leo vel, lacinia cursus massa. Sed a vulputate sapien, quis varius nisi. Ut mattis nec libero quis euismod. Praesent eget hendrerit libero, nec sollicitudin quam. In hac habitasse platea dictumst. Phasellus vulputate consequat sem a dictum. Fusce elementum neque sed mauris molestie, et tincidunt purus gravida. Fusce congue neque ut finibus commodo. Duis vitae nisi at tortor eleifend facilisis vitae at velit. Nulla sit amet erat pretium, eleifend nisi a, tincidunt quam. Mauris a augue aliquet massa volutpat rhoncus. Aenean in varius magna.
                 </Text>
                 </View>

@@ -17,9 +17,10 @@ import {
 } from '../actions';
 import { FormInput, FormValidationMessage, Button, Header, Card, Divider, Slider } from 'react-native-elements';
 import AddedUser from './AddedUser';
-import LeftMenu from './LeftMenu';
+import LeftMenuForProfile from './LeftMenuForProfile';
 import axios from 'axios';
 import IP from '../IP';
+import { Ionicons } from '@expo/vector-icons';
 
 window.navigator.userAgent = 'react-native';
 import io from 'socket.io-client';
@@ -42,18 +43,9 @@ class MainView extends React.Component {
         this.setState({
             waiting: false
         });
-
-        Font.loadAsync({
-            'metropolis': require('../assets/fonts/Metropolis-Regular.otf')
-        });
     }
 
     componentDidMount() {
-        // Font.loadAsync({
-        //     'cind': require('../assets/fonts/CIND.otf'),
-        //     'metropolis': require('../assets/fonts/Metropolis-Regular.otf')
-        //   });
-
         console.log(IP);
         this.socket = io(IP);
         this.props.connectSocket(this.socket);
@@ -92,56 +84,93 @@ class MainView extends React.Component {
             )
         } else {
             return (
-                <View style={{ marginTop: '3%' }}>
-                <View style={{flex: 1, alignItems: 'stretch', justifyContent: 'center', width: '80%', marginLeft: '10%' }}>
-                    <Slider
-                        value={this.props.timer}
-                        maximumValue={60}
-                        step={1}
-                        onValueChange={this.setTime.bind(this)}
-                    />
+            <View style={{ marginTop: '5%', flex: 1 }}>
+                <View style={{ alignContent: 'center', width: '85%', marginLeft: '8%' }}>
+                    <Text style={{ color: 'white', fontFamily: 'Arial', fontSize: 14, textAlign: 'center', lineHeight: 20 }}>
+                        To start a new game, create a room name and invite players using their email addresses. Then set a timer for your game.
+                    </Text>
                 </View>
-                <Divider style={{ backgroundColor: 'rgba(0, 0, 0, 0)', height: 15 }}/>
-                <Text
-                style={{ color: '#b7bfcc' }}
-                >Game Timer: {this.props.timer}</Text>
+
                 <Divider style={{ backgroundColor: 'rgba(0, 0, 0, 0)', height: 5 }}/>
+                
                 <FormInput
                     placeholder="Room Name"
-                    placeholderTextColor='#b7bfcc'
+                    placeholderTextColor='white'
+                    borderBottomColor='white'
+                    inputStyle={{ color: 'white' }}
                     onChangeText={this.onRoomChange.bind(this)}
                     value={this.props.roomName}
                 />
-                <FormInput
-                    placeholder="Add Users to Room"
-                    placeholderTextColor='#b7bfcc'
-                    onChangeText={this.onSearchedUsernameChange.bind(this)}
-                    value={this.props.searchedUsername}
-                    ref={input => this.input = input}
-                />
+
+                <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+                    <FormInput
+                        placeholder="Add Users to Room"
+                        placeholderTextColor='white'
+                        borderBottomColor='white'
+                        inputStyle={{ color: 'white' }}
+                        onChangeText={this.onSearchedUsernameChange.bind(this)}
+                        value={this.props.searchedUsername}
+                        ref={input => this.input = input}
+                        containerStyle={{ width: '80%' }}
+                    />
+                    <TouchableOpacity onPress={this.addUser.bind(this)}>
+                        <Ionicons name='ios-add' size={35} color='white' />
+                    </TouchableOpacity>
+                </View>
+
                 {this.renderSelfError()}
                 {this.renderError()}
-                <Button
-                    title='Add User'
-                    raised
-                    onPress={this.addUser.bind(this)}
-                    backgroundColor="rgba(0, 0, 0, 0.5)"
-                />
-                <Button
-                    title='Create Room'
-                    raised
-                    onPress={this.createRoom.bind(this)}
-                    backgroundColor="rgba(0, 0, 0, 0.5)"
-                />
-                <Text
-                    style={{ color: '#b7bfcc' }}
-                >Users {this.props.totalUsersInRoom}/5</Text>
+
+                <Divider style={{ backgroundColor: 'rgba(0, 0, 0, 0)', height: 20 }}/>
+
+                <View style={{ alignItems: 'center' }}>
+                <Text style={{ color: 'white', fontFamily: 'Arial', fontWeight: 'bold' }}>
+                    Users {this.props.totalUsersInRoom}/5
+                </Text>
+                </View>
+
+                <View style={{ width: '90%', alignSelf: 'center' }}>
                 {this.props.addedUsers.map(user => (
                     <AddedUser
                         user={user}
                         key={user}
                     />
                 ))}
+                </View>
+
+
+                <View style={{ position: 'absolute', top: '75%', alignItems: 'center', width: '100%' }}>
+                    <Text style={{ color: 'white', fontFamily: 'Arial', fontSize: 14, fontWeight: 'bold' }}>Game Timer: {this.props.timer}</Text>
+
+                    <Divider style={{ backgroundColor: 'rgba(0, 0, 0, 0)', height: 10 }}/>
+
+                    <Slider
+                        value={this.props.timer}
+                        maximumValue={60}
+                        step={1}
+                        onValueChange={this.setTime.bind(this)}
+                        thumbStyle={{ backgroundColor: '#b13c61', borderColor: 'white', borderWidth: 1.5 }}
+                        trackStyle={{ backgroundColor: 'white', height: 5 }}
+                        minimumTrackTintColor='#b13c61'
+                        style={{ width: '80%' }}
+                    />
+
+                    <Divider style={{ backgroundColor: 'rgba(0, 0, 0, 0)', height: 15 }}/>
+
+                    <Button
+                        title='CREATE'
+                        textStyle={{ fontSize: 10, fontWeight: 'bold', fontFamily: 'Arial'}}
+                        raised
+                        onPress={this.createRoom.bind(this)}
+                        backgroundColor='#b13c61'
+                        containerViewStyle={{ borderRadius: 35, borderWidth: 0 }}
+                        // containerStyle={{ borderRadius: 35, borderWidth: 0 }}
+                        // style={{ borderWidth: 0, borderRadius: 35 }}
+                        large
+                        rounded
+                        // containerViewStyle={{ width: '25%' }}
+                    />
+                </View>
             </View>
             )
         }
@@ -223,8 +252,9 @@ class MainView extends React.Component {
                     <Header
                         backgroundColor='rgba(0,0,0,0)'
                         outerContainerStyles={{borderBottomWidth: 0}}
-                        centerComponent={{ text: 'DECKARD.IO', style: { color: '#b7bfcc', fontSize: 18, fontWeight: 'bold' } }}
-                        leftComponent={<LeftMenu/>}
+                        centerComponent={{ text: 'NEW GAME', style: { color: 'white', fontSize: 18, fontFamily: 'Arial', fontWeight: 'bold' } }}
+                        leftComponent={<LeftMenuForProfile/>}
+                        containerStyle={{ marginTop: '5%'}}
                     />
 
                     {this.toggleInviteView()}

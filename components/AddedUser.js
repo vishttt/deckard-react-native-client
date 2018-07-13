@@ -20,14 +20,16 @@ class AddedUser extends React.Component {
             <ListItem
                 key={this.props.user}
                 title={this.props.user}
-                avatar={{ uri: `https://robohash.org/${this.props.user}?set=set4`}}
-                titleStyle={{ color: '#b7bfcc' }}
+                titleStyle={{ color: 'white' }}
+                // titleContainerStyle={{ height: 12 }}
                 onPress={this.onRowPress.bind(this)}
-                rightIcon={ <Ionicons name='ios-close' size={50} color='#b7bfcc' /> }
+                rightIcon={ <Ionicons name='ios-close' size={35} color='white' /> }
                 containerStyle={{
-                    backgroundColor: "rgba(0, 0, 0, 0.5)",
-                    height: 55
+                    backgroundColor: 'rgba(0,0,0,0)',
+                    height: 45
                 }}
+                subtitleNumberOfLines={0}
+                rightTitleNumberOfLines={0}
             />
         )
     }

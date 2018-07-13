@@ -1,7 +1,7 @@
 import React from 'react';
 import { Actions } from 'react-native-router-flux';
 import { ImageBackground, View, Image, Text } from 'react-native';
-import { Header, Card, Button } from 'react-native-elements';
+import { Header, Card, Button, Divider } from 'react-native-elements';
 import { connect } from 'react-redux'
 import LeftMenuForProfile from './LeftMenuForProfile';
 import { Ionicons } from '@expo/vector-icons';
@@ -23,8 +23,10 @@ class Profile extends React.Component {
                 <View style={{ marginTop: '21%', alignItems: 'center' }}>
                     <Ionicons name='md-contact' color="white" size={100} />
 
+                    <Divider style={{ backgroundColor: 'rgba(0, 0, 0, 0)', height: 20 }}/>
+
                     <Button
-                        title={this.props.user.email}
+                        title={this.props.user.email.toUpperCase()}
                         textStyle={{ fontSize: 10, fontWeight: 'bold', fontFamily: 'Arial'}}
                         raised
                         backgroundColor="rgba(0,0,0,0)"
@@ -32,6 +34,8 @@ class Profile extends React.Component {
                         large
                         containerViewStyle={{ width: '85%' }}
                     />
+
+                    <Divider style={{ backgroundColor: 'rgba(0, 0, 0, 0)', height: 20 }}/>
 
                     <Button
                         title='GAMES PLAYED: 0'
@@ -43,6 +47,8 @@ class Profile extends React.Component {
                         containerViewStyle={{ width: '85%' }}
                     />
 
+                    <Divider style={{ backgroundColor: 'rgba(0, 0, 0, 0)', height: 20 }}/>
+
                     <Button
                         title='GAMES WON: 0'
                         textStyle={{ fontSize: 10, fontWeight: 'bold', fontFamily: 'Arial'}}
@@ -52,6 +58,8 @@ class Profile extends React.Component {
                         large
                         containerViewStyle={{ width: '85%' }}
                     />
+
+                    <Divider style={{ backgroundColor: 'rgba(0, 0, 0, 0)', height: 20 }}/>
 
                     <Button
                         title='LIFETIME SCORE: 0'

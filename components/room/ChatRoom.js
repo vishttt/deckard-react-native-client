@@ -95,7 +95,7 @@ class ChatRoom extends React.Component {
   render() {
     return (
         <ImageBackground 
-            source={require('../../assets/splash.png')}
+            source={require('../../assets/splash_blur.png')}
             style={{ flex: 1, backgroundColor: '#000' }}
         >
             <KeyboardAvoidingView style={{ marginTop: '20%' }}>

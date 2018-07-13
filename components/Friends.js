@@ -8,14 +8,13 @@ class Friends extends React.Component {
         super();
         this.state = {
             friends: [
-                // {email: 'joy.kimm@gmail.com'},
-                {email: 'alex_the_don_donesky@hotmail.com'}, 
+                {email: 'alex_the_don@hotmail.com'}, 
                 {email: 'mitchbones@gmail.com'}, 
                 {email: 'trajansmith@gmail.com'}, 
                 {email: 'yikes_joe@yahoo.com'}, 
                 {email: 'snyperyflechui@gmail.com',},
                 {email: 'jacobi@gmail.com'}, 
-                {email: 'robakagitmoneygithub@gmail.com'}, 
+                {email: 'gitmoneygithub@gmail.com'}, 
                 {email: 'netters@gmail.com'}, 
                 {email: 'trevvvvv@gmail.com'}, 
                 {email: 'ironmanraph@gmail.com'}, 
@@ -26,7 +25,7 @@ class Friends extends React.Component {
     render() {
         return (
             <ImageBackground 
-            source={require('../assets/splash.png')}
+            source={require('../assets/splash_blur.png')}
             style={{ flex: 1, backgroundColor: '#000' }}
             >
 

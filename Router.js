@@ -1,5 +1,6 @@
 import React from 'react';
 import { Scene, Router, Actions } from 'react-native-router-flux';
+import CompanySplash from './components/CompanySplash';
 import LoginForm from './components/LoginForm';
 import HomePage from './components/HomePage';
 import Profile from './components/Profile';
@@ -31,6 +32,15 @@ class RouterComponent extends React.Component {
         return (
             <Router>
                 <Scene key="root" hideNavBar>
+                    <Scene key="splash">
+                        <Scene 
+                            key="companysplash"
+                            component={CompanySplash}
+                            hideNavBar
+                            initial
+                        />
+                    </Scene>
+
                     <Scene key="auth">
                         <Scene 
                             key="login" 

@@ -1,6 +1,7 @@
 import React from 'react';
-import { View, Text, ImageBackground, KeyboardAvoidingView } from 'react-native';
+import { View, Text, ImageBackground, KeyboardAvoidingView, TouchableOpacity } from 'react-native';
 import { connect } from 'react-redux';
+import { Font } from 'expo';
 import { emailChanged, passwordChanged, loginUser, signupUser, githubLogin } from '../actions';
 import { FormLabel, FormInput, FormValidationMessage, Button, Divider, SocialIcon } from 'react-native-elements';
 import { Ionicons } from '@expo/vector-icons';
@@ -12,7 +13,16 @@ class LoginForm extends React.Component {
             main: true,
             login: false,
             signup: false,
+            fontLoaded: false,
         }
+    }
+
+    async componentDidMount() {
+        await Font.loadAsync({
+            'met': require('../assets/fonts/Metropolis-Regular.otf')
+        });
+    
+        this.setState({ fontLoaded: true });
     }
 
     componentWillMount() {
@@ -41,22 +51,20 @@ class LoginForm extends React.Component {
         this.setState({
             main: false,
             login: true,
-            signup: false
         })
     }
 
     onSignupToggle() {
         this.setState({
-            main: false,
-            login: false,
-            signup: true
+            main: true,
+            login: false
         })
     }
 
     renderError() {
         if (this.props.error) {
             return (
-                <FormValidationMessage>
+                <FormValidationMessage style={{ fontFamily: 'cind' }}>
                     {this.props.error}
                 </FormValidationMessage>
             );
@@ -64,185 +72,210 @@ class LoginForm extends React.Component {
     }
 
     renderForms() {
-        if (this.state.main) {
-            return(
-                <ImageBackground
-                source={require('../assets/splash.png')}
-                style={{ flex: 1, backgroundColor: '#000' }}
-                >
-                    <KeyboardAvoidingView style={{ top: '23%' }}>
+        if (this.state.fontLoaded) {
+            if (this.state.main) {
+                return(
+                    <ImageBackground
+                    source={require('../assets/splash_opaque.png')}
+                    style={{ flex: 1, backgroundColor: 'black'}}
+                    >
+                        <KeyboardAvoidingView style={{ top: '23%' }}>
+                            <View style={{ alignItems: 'center' }}>
+                                <Text style={{ fontFamily: 'met', fontSize: 50, color: 'white', letterSpacing: -3 }}>deckard.io</Text>
+                                {/* <FormLabel labelStyle={{ fontFamily: 'met', fontSize: 50, color: '#fcfeff' }}>deckard.io</FormLabel> */}
+                            </View>
+
+                            <Divider style={{ backgroundColor: 'rgba(0, 0, 0, 0)', height: 50 }}/>
+
+                            <FormInput
+                                placeholder="Name"
+                                placeholderTextColor='white'
+                                inputStyle={{ color: 'white' }}
+                                style={{ color: 'white' }}
+                                containerStyle={{ borderBottomColor: 'white' }}
+                            />
+
+                            <Divider style={{ backgroundColor: 'rgba(0, 0, 0, 0)', height: 20 }}/>
+                    
+                            <FormInput
+                                placeholder="Email"
+                                placeholderTextColor='white'
+                                onChangeText={this.onEmailChange.bind(this)}
+                                inputStyle={{ color: 'white' }}
+                                value={this.props.email}
+                                style={{ color: 'white' }}
+                                containerStyle={{ borderBottomColor: 'white' }}
+                            />
+
+                            <Divider style={{ backgroundColor: 'rgba(0, 0, 0, 0)', height: 20 }}/>
+
+                            <FormInput
+                                secureTextEntry
+                                placeholder="Password"
+                                placeholderTextColor='white'
+                                onChangeText={this.onPasswordChange.bind(this)}
+                                inputStyle={{ color: 'white' }}
+                                value={this.props.password}
+                                style={{ color: 'white' }}
+                                containerStyle={{ borderBottomColor: 'white' }}
+                            />
+
+                            {this.renderError()}
+
+                            <Divider style={{ backgroundColor: 'rgba(0, 0, 0, 0)', height: 60 }}/>
+
+                            <Button
+                                title='SIGNUP'
+                                textStyle={{ fontSize: 10, fontWeight: 'bold', fontFamily: 'Arial'}}
+                                loading={this.props.loading}
+                                raised
+                                onPress={this.onSignUpButtonPress.bind(this)}
+                                backgroundColor="rgba(0,0,0,0)"
+                                style={{ borderWidth: 1, borderColor: 'white', borderRadius: 35 }}
+                                // opacity={0.85}
+                                rounded
+                            />
+
+                            <Divider style={{ backgroundColor: 'rgba(0, 0, 0, 0)', height: 60 }}/>
+
+                            <View style={{ flexDirection: 'row', justifyContent: 'center' }}>
+                            <SocialIcon
+                                type='facebook'
+                                light
+                                raised
+                                style={{ borderWidth: 1, borderColor: 'white' }}
+                                // onPress={}
+                            />
+
+                            <SocialIcon
+                                type='twitter'
+                                light
+                                raised
+                                style={{ borderWidth: 1, borderColor: 'white' }}
+                                // onPress={this.props.githubLogin.bind(this)}
+                            />
+
+                            <SocialIcon
+                                type='github-alt'
+                                light
+                                raised
+                                style={{ borderWidth: 1, borderColor: 'white' }}
+                                // onPress={}
+                            />
+                            </View>
+
+                            <Divider style={{ backgroundColor: 'rgba(0, 0, 0, 0)', height: 10 }}/>
+
+                            <TouchableOpacity onPress={this.onLoginToggle.bind(this)}>
+                                <View style={{ alignItems: 'center' }}>
+                                <Text style={{ fontSize: 12, color: 'white' }}>Already have an account?</Text>
+                                </View>
+                            </TouchableOpacity>
+                        </KeyboardAvoidingView>
+                    </ImageBackground>
+                )
+            }
+
+            if (this.state.login) {
+                return (
+                    <ImageBackground
+                    source={require('../assets/splash_opaque.png')}
+                    style={{ flex: 1, backgroundColor: '#000' }}
+                    >
+                        <KeyboardAvoidingView style={{ top: '23%' }}>
                         <View style={{ alignItems: 'center' }}>
-                            <FormLabel labelStyle={{ fontSize: 25, color: '#fcfeff' }}>DECKARD.IO</FormLabel>
-                        </View>
+                                <Text style={{ fontFamily: 'met', fontSize: 50, color: 'white', letterSpacing: -3 }}>deckard.io</Text>
+                                {/* <FormLabel labelStyle={{ fontFamily: 'met', fontSize: 50, color: '#fcfeff' }}>deckard.io</FormLabel> */}
+                            </View>
 
-                        <View style={{ flexDirection: 'row', justifyContent: 'center' }}>
-                            <Button
-                                title='Login'
-                                onPress={this.onLoginToggle.bind(this)}
-                                raised
-                                backgroundColor="rgba(0, 0, 0, 0.5)"
+                            <Divider style={{ backgroundColor: 'rgba(0, 0, 0, 0)', height: 50 }}/>
+
+                            <Divider style={{ backgroundColor: 'rgba(0, 0, 0, 0)', height: 20 }}/>
+                    
+                            <FormInput
+                                placeholder="Email"
+                                placeholderTextColor='white'
+                                onChangeText={this.onEmailChange.bind(this)}
+                                inputStyle={{ color: 'white' }}
+                                value={this.props.email}
+                                style={{ color: 'white' }}
+                                containerStyle={{ borderBottomColor: 'white' }}
                             />
 
-                            <Button
-                                title='Signup'
-                                onPress={this.onSignupToggle.bind(this)}
-                                raised
-                                backgroundColor="rgba(0, 0, 0, 0.5)"
-                            />
-                        </View>
-                    </KeyboardAvoidingView>
-                </ImageBackground>
-            )
-        }
+                            <Divider style={{ backgroundColor: 'rgba(0, 0, 0, 0)', height: 20 }}/>
 
-        if (this.state.login) {
+                            <FormInput
+                                secureTextEntry
+                                placeholder="Password"
+                                placeholderTextColor='white'
+                                onChangeText={this.onPasswordChange.bind(this)}
+                                inputStyle={{ color: 'white' }}
+                                value={this.props.password}
+                                style={{ color: 'white' }}
+                                containerStyle={{ borderBottomColor: 'white' }}
+                            />
+
+                            {this.renderError()}
+
+                            <Divider style={{ backgroundColor: 'rgba(0, 0, 0, 0)', height: 60 }}/>
+
+                            <Button
+                                title='LOGIN'
+                                textStyle={{ fontSize: 10, fontWeight: 'bold', fontFamily: 'Arial'}}
+                                loading={this.props.loading}
+                                raised
+                                onPress={this.onButtonPress.bind(this)}
+                                backgroundColor="rgba(0,0,0,0)"
+                                style={{ borderWidth: 1, borderColor: 'white', borderRadius: 35 }}
+                                // opacity={0.85}
+                                rounded
+                            />
+
+                            <Divider style={{ backgroundColor: 'rgba(0, 0, 0, 0)', height: 60 }}/>
+
+                            <View style={{ flexDirection: 'row', justifyContent: 'center' }}>
+                            <SocialIcon
+                                type='facebook'
+                                light
+                                raised
+                                style={{ borderWidth: 1, borderColor: 'white' }}
+                                // onPress={}
+                            />
+
+                            <SocialIcon
+                                type='twitter'
+                                light
+                                raised
+                                style={{ borderWidth: 1, borderColor: 'white' }}
+                                // onPress={this.props.githubLogin.bind(this)}
+                            />
+
+                            <SocialIcon
+                                type='github-alt'
+                                light
+                                raised
+                                style={{ borderWidth: 1, borderColor: 'white' }}
+                                // onPress={}
+                            />
+                            </View>
+
+                            <Divider style={{ backgroundColor: 'rgba(0, 0, 0, 0)', height: 10 }}/>
+
+                            <TouchableOpacity onPress={this.onSignupToggle.bind(this)}>
+                                <View style={{ alignItems: 'center' }}>
+                                <Text style={{ fontSize: 12, color: 'white' }}>Signup for an account</Text>
+                                </View>
+                            </TouchableOpacity>
+                        </KeyboardAvoidingView>
+                    </ImageBackground>
+                )
+            }
+        } else {
             return (
                 <ImageBackground
-                source={require('../assets/splash.png')}
+                source={require('../assets/splash_opaque.png')}
                 style={{ flex: 1, backgroundColor: '#000' }}
                 >
-                    <KeyboardAvoidingView style={{ top: '23%' }}>
-                        <View style={{ alignItems: 'center' }}>
-                            <FormLabel labelStyle={{ fontSize: 25, color: '#fcfeff' }}>DECKARD.IO</FormLabel>
-                        </View>
-
-                        <View style={{ flexDirection: 'row', justifyContent: 'center' }}>
-                            <Button
-                                title='Login'
-                                onPress={this.onLoginToggle.bind(this)}
-                                raised
-                                backgroundColor="rgba(0, 0, 0, 0.5)"
-                            />
-
-                            <Button
-                                title='Signup'
-                                onPress={this.onSignupToggle.bind(this)}
-                                raised
-                                backgroundColor="rgba(0, 0, 0, 0.5)"
-                            />
-                        </View>
-                   
-                        <FormInput
-                            placeholder="email"
-                            placeholderTextColor='#b7bfcc'
-                            onChangeText={this.onEmailChange.bind(this)}
-                            value={this.props.email}
-                            style={{ color: '#fcfeff' }}
-                        />
-
-                        <FormInput
-                            secureTextEntry
-                            placeholder="password"
-                            placeholderTextColor='#b7bfcc'
-                            onChangeText={this.onPasswordChange.bind(this)}
-                            value={this.props.password}
-                        />
-
-                        {this.renderError()}
-
-                        <Divider style={{ backgroundColor: 'rgba(0, 0, 0, 0)', height: 10 }}/>
-
-                        <Button
-                            title='Login'
-                            loading={this.props.loading}
-                            raised
-                            onPress={this.onButtonPress.bind(this)}
-                            backgroundColor="#232323"
-                            // opacity={0.85}
-                            rounded
-                        />
-
-                        <SocialIcon
-                            button
-                            raised
-                            type='google-plus-official'
-                            title='Sign in with Google'
-                            // onPress={}
-                        />
-
-                        <SocialIcon
-                            button
-                            raised
-                            type='facebook'
-                            title='Sign in with Facebook'
-                            // onPress={}
-                        />
-
-                        <SocialIcon
-                            button
-                            raised
-                            type='github-alt'
-                            title='Sign in with Github'
-                            onPress={this.props.githubLogin.bind(this)}
-                        />
-                    </KeyboardAvoidingView>
-                </ImageBackground>
-            )
-        }
-
-        if (this.state.signup) {
-            return (
-                <ImageBackground
-                source={require('../assets/splash.png')}
-                style={{ flex: 1, backgroundColor: '#000' }}
-                >
-                    <KeyboardAvoidingView style={{ top: '23%' }}>
-                        <View style={{ alignItems: 'center' }}>
-                            <FormLabel labelStyle={{ fontSize: 25, color: '#fcfeff' }}>DECKARD.IO</FormLabel>
-                        </View>
-
-                        <View style={{ flexDirection: 'row', justifyContent: 'center' }}>
-                            <Button
-                                title='Login'
-                                onPress={this.onLoginToggle.bind(this)}
-                                raised
-                                backgroundColor="rgba(0, 0, 0, 0.5)"
-                            />
-
-                            <Button
-                                title='Signup'
-                                onPress={this.onSignupToggle.bind(this)}
-                                raised
-                                backgroundColor="rgba(0, 0, 0, 0.5)"
-                            />
-                        </View>
-
-                        <FormInput
-                            placeholder="email"
-                            placeholderTextColor='#b7bfcc'
-                            onChangeText={this.onEmailChange.bind(this)}
-                            value={this.props.email}
-                        />
-
-                        <FormInput
-                            secureTextEntry
-                            placeholder="password"
-                            placeholderTextColor='#b7bfcc'
-                            onChangeText={this.onPasswordChange.bind(this)}
-                            value={this.props.password}
-                        />
-
-                        <FormInput
-                            secureTextEntry
-                            placeholder="verify password"
-                            placeholderTextColor='#b7bfcc'
-                            // onChangeText={this.onVerifyPasswordChange.bind(this)}
-                            // value={this.props.verifyPassword}
-                        />
-
-                        {this.renderError()}
-
-                        <Divider style={{ backgroundColor: 'rgba(0, 0, 0, 0)', height: 10 }}/>
-
-                        <Button
-                            title='Sign Up'
-                            loading={this.props.signupLoading}
-                            raised
-                            onPress={this.onSignUpButtonPress.bind(this)}
-                            backgroundColor="#232323"
-                            rounded
-                        />
-                    </KeyboardAvoidingView>
                 </ImageBackground>
             )
         }

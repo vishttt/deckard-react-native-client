@@ -2,6 +2,7 @@ import React from 'react';
 import { View, Text, FlatList, ImageBackground, KeyboardAvoidingView, TouchableOpacity, Modal } from 'react-native';
 import { connect } from 'react-redux';
 import { Actions } from 'react-native-router-flux';
+import { Font } from 'expo';
 import { 
     createRoom, 
     searchedUsernameTextChange, 
@@ -41,9 +42,18 @@ class MainView extends React.Component {
         this.setState({
             waiting: false
         });
+
+        Font.loadAsync({
+            'metropolis': require('../assets/fonts/Metropolis-Regular.otf')
+        });
     }
 
     componentDidMount() {
+        // Font.loadAsync({
+        //     'cind': require('../assets/fonts/CIND.otf'),
+        //     'metropolis': require('../assets/fonts/Metropolis-Regular.otf')
+        //   });
+
         console.log(IP);
         this.socket = io(IP);
         this.props.connectSocket(this.socket);
@@ -141,7 +151,7 @@ class MainView extends React.Component {
         if (this.state.waiting) {
             return (
             <ImageBackground 
-            source={require('../assets/splash.png')}
+            source={require('../assets/splash_blur.png')}
             style={{ flex: 1, backgroundColor: '#000' }}
             >
                 <Card
@@ -156,7 +166,7 @@ class MainView extends React.Component {
         } else {
             return (
                 <ImageBackground 
-                source={require('../assets/splash.png')}
+                source={require('../assets/splash_blur.png')}
                 style={{ flex: 1, backgroundColor: '#000' }}
                 >
 

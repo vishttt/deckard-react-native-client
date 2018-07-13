@@ -9,6 +9,7 @@ import {
     LOGIN_USER_FAIL,
     SIGNUP_USER,
     LOGOUT_USER,
+    TOGGLE_RULES,
     // Room Types ------------
     CREATE_ROOM, 
     SEARCHED_USERNAME, 
@@ -122,6 +123,12 @@ const loginUserFail = (dispatch) => {
 export const logoutUser = () => {
     return {
         type: LOGOUT_USER
+    }
+}
+
+export const toggleRules = () => {
+    return {
+        type: TOGGLE_RULES
     }
 }
 

@@ -8,7 +8,7 @@ import { toggleRules } from '../actions';
 
 class LeftMenu extends React.Component {
     onLeftPress() {
-       this.props.toggleRules();
+        Actions.home();
     }
 
     render() {

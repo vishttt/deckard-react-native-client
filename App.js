@@ -1,4 +1,4 @@
-import { AppRegistry } from 'react-native';
+import { StatusBar } from 'react-native';
 import React from 'react';
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
@@ -18,6 +18,7 @@ class App extends React.Component {
         messagingSenderId: "299670124373"
       };
       firebase.initializeApp(config);
+
   }
 
   render() {

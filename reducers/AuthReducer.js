@@ -7,6 +7,7 @@ import {
     LOGIN_USER_FAIL,
     SIGNUP_USER,
     LOGOUT_USER,
+    TOGGLE_RULES,
     // Room Types ------------
     CREATE_ROOM, 
     SEARCHED_USERNAME, 
@@ -42,6 +43,7 @@ const INITIAL_STATE = {
     uid: '',
     loggedIn: false,
     signupLoading: false,
+    showRules: false,
     //
     // ─── ROOM STATE ─────────────────────────────────────────────────────────────────
     //    
@@ -96,6 +98,8 @@ export default (state = INITIAL_STATE, action) => {
             return { ...state, error: 'Authentication Failed.', loading: false, signupLoading: false };
         case LOGOUT_USER:
             return { ...state, loggedIn: false};
+        case TOGGLE_RULES:
+            return { ...state, showRules: !state.showRules };
     //
     // Room Reducers ----------------------------------------------------------------
     //

@@ -33,3 +33,5 @@ export const SET_TIMER = 'set_timer';
 export const SET_ACCEPTED_USERS = 'set_accepted_users';
 export const ADD_ACCEPTED_USER = 'add_accepted_user';
 export const SET_ROOM_NAME = 'set_room_name';
+
+export const TOGGLE_RULES = 'toggle_rules';

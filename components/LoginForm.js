@@ -1,9 +1,9 @@
 import React from 'react';
-import { View, Text, ImageBackground, KeyboardAvoidingView, TouchableOpacity } from 'react-native';
+import { View, Text, ImageBackground, KeyboardAvoidingView, TouchableOpacity, StatusBar } from 'react-native';
 import { connect } from 'react-redux';
 import { Font } from 'expo';
 import { emailChanged, passwordChanged, loginUser, signupUser, githubLogin } from '../actions';
-import { FormLabel, FormInput, FormValidationMessage, Button, Divider, SocialIcon } from 'react-native-elements';
+import { FormLabel, FormInput, FormValidationMessage, Button, Divider, SocialIcon, Header } from 'react-native-elements';
 import { Ionicons } from '@expo/vector-icons';
 
 class LoginForm extends React.Component {
@@ -79,13 +79,14 @@ class LoginForm extends React.Component {
                     source={require('../assets/splash_opaque.png')}
                     style={{ flex: 1, backgroundColor: 'black'}}
                     >
-                        <KeyboardAvoidingView style={{ top: '23%' }}>
+                        <StatusBar hidden />
+                        <KeyboardAvoidingView style={{ top: '18%' }}>
                             <View style={{ alignItems: 'center' }}>
-                                <Text style={{ fontFamily: 'met', fontSize: 50, color: 'white', letterSpacing: -3 }}>deckard.io</Text>
+                                <Text style={{ fontFamily: 'met', fontSize: 60, color: 'white', letterSpacing: -3 }}>deckard.io</Text>
                                 {/* <FormLabel labelStyle={{ fontFamily: 'met', fontSize: 50, color: '#fcfeff' }}>deckard.io</FormLabel> */}
                             </View>
 
-                            <Divider style={{ backgroundColor: 'rgba(0, 0, 0, 0)', height: 50 }}/>
+                            <Divider style={{ backgroundColor: 'rgba(0, 0, 0, 0)', height: 30 }}/>
 
                             <FormInput
                                 placeholder="Name"
@@ -133,7 +134,7 @@ class LoginForm extends React.Component {
                                 backgroundColor="rgba(0,0,0,0)"
                                 style={{ borderWidth: 1, borderColor: 'white', borderRadius: 35 }}
                                 // opacity={0.85}
-                                rounded
+                                large
                             />
 
                             <Divider style={{ backgroundColor: 'rgba(0, 0, 0, 0)', height: 60 }}/>
@@ -182,13 +183,14 @@ class LoginForm extends React.Component {
                     source={require('../assets/splash_opaque.png')}
                     style={{ flex: 1, backgroundColor: '#000' }}
                     >
-                        <KeyboardAvoidingView style={{ top: '23%' }}>
+                        <StatusBar hidden />
+                        <KeyboardAvoidingView style={{ top: '18%' }}>
                         <View style={{ alignItems: 'center' }}>
-                                <Text style={{ fontFamily: 'met', fontSize: 50, color: 'white', letterSpacing: -3 }}>deckard.io</Text>
+                                <Text style={{ fontFamily: 'met', fontSize: 60, color: 'white', letterSpacing: -3 }}>deckard.io</Text>
                                 {/* <FormLabel labelStyle={{ fontFamily: 'met', fontSize: 50, color: '#fcfeff' }}>deckard.io</FormLabel> */}
                             </View>
 
-                            <Divider style={{ backgroundColor: 'rgba(0, 0, 0, 0)', height: 50 }}/>
+                            <Divider style={{ backgroundColor: 'rgba(0, 0, 0, 0)', height: 30 }}/>
 
                             <Divider style={{ backgroundColor: 'rgba(0, 0, 0, 0)', height: 20 }}/>
                     
@@ -228,7 +230,7 @@ class LoginForm extends React.Component {
                                 backgroundColor="rgba(0,0,0,0)"
                                 style={{ borderWidth: 1, borderColor: 'white', borderRadius: 35 }}
                                 // opacity={0.85}
-                                rounded
+                                large
                             />
 
                             <Divider style={{ backgroundColor: 'rgba(0, 0, 0, 0)', height: 60 }}/>
@@ -276,6 +278,7 @@ class LoginForm extends React.Component {
                 source={require('../assets/splash_opaque.png')}
                 style={{ flex: 1, backgroundColor: '#000' }}
                 >
+                <StatusBar hidden />
                 </ImageBackground>
             )
         }
